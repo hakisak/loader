@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="xito-dazzle" basedir=".">
+    <property name="project.version" value="0.7"/>
+    <!-- <property name="test.main.class" value="test.xito.dazzle.DazzleTest"/> -->
+    <!-- <property name="test.main.class" value="test.xito.dazzle.TestStackPanel"/> -->
+    <!-- <property name="test.main.class" value="test.xito.dazzle.BusyPanelTest"/> -->
+    <!-- <property name="test.main.class" value="test.xito.dazzle.RoundRectBorderTest"/> -->
+    <!-- <property name="test.main.class" value="test.xito.dazzle.SheetPaneTest"/> -->
+    <!-- <property name="test.main.class" value="test.xito.dazzle.ToolBarTest"/> -->
+    <!-- <property name="test.main.class" value="test.xito.dazzle.SplitPaneTest"/> -->
+    
+    <!-- <property name="test.main.class" value="test.xito.dazzle.TableTest"/> -->
+    <!-- <property name="test.main.class" value="test.xito.dazzle.SheetDialogTest"/> --> 
+     <property name="test.main.class" value="test.xito.dazzle.WindowBlockingBusyWorkerTest"/> 
+
+    <!-- <property name="test.main.class" value="test.xito.dazzle.MacApplicationHelperTest"/> -->
+    <!-- <property name="test.main.class" value="org.xito.dazzle.widget.laf.DZScrollBarUI2"/> -->
+    <import file="../../build-service-include.xml"/>
+
+    <!-- Classpath that this module needs to build -->
+    <path id="classpath">
+        <pathelement location="../dialog/build/classes"/>
+        <pathelement location="lib/*.jar"/>
+    </path>
+        
+    <fileset id="jar.fileset" dir="${classes}">
+        <include name="org/xito/dazzle/**"/>
+    </fileset>
+    
+    <target name="build-dependancies">
+        <ant antfile="../org.xito/build.xml" target="build" inheritall="false"/>
+    </target>
+
+    <!-- these tasks run after building the build_test_boot_dir -->
+    <target name="post_build_test_boot_dir">
+        <jar file="${build}/test_boot_dir/${ant.project.name}-test.jar">
+            <fileset dir="${classes}">
+                <include name="test/**"/>
+            </fileset>
+        </jar>
+
+        <!-- copy services we need -->
+        <!--
+        <copy todir="${build}/xito-prefs">
+            <fileset dir="../prefs/build/xito-prefs"/>
+        </copy>
+
+        <copy todir="${build}/xito-jdic">
+            <fileset dir="../jdic/build/xito-jdic"/>
+        </copy>
+        -->
+    </target>
+
+    <target name="test" depends="build">
+        <echo message="Testing ${ant.project.name} args:${test.args}"/>
+         <java classname="${test.main.class}" fork="true">
+             <classpath>
+               <pathelement location="${classes}"/>
+               <path refid="classpath"/>
+             </classpath>
+             <arg line="${test.args}"/>
+             <jvmarg line="-ea"/>
+         </java>
+    </target>
+
+    <target name="dist" depends="jar, javadoc">
+        <mkdir dir="${dist}"/>
+        <zip destfile="${dist}/${ant.project.name}-${project.version}.zip">
+            <fileset dir="../../" includes="LICENSE-2.0.txt"/>
+            <fileset dir="." includes="readme.txt"/>
+            <fileset dir="${build}" includes="${ant.project.name}-${project.version}.jar"/>
+            <fileset dir="${build}" includes="javadoc/**"/>
+            <fileset dir="../org.xito/build" includes="xito-org.dialog-*.jar"/>
+            <fileset dir="lib" includes="*.jar"/>
+            <fileset dir="${basedir}" includes="src/**"/>
+        </zip>
+    </target>
+    
+</project>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0050)http://owlnext.sourceforge.net/_kbase/00000065.htm -->
+<HTML><HEAD><TITLE>Bcc32 5.5 startup objs and libs</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content="sumipntg 011, default" name="Microsoft Theme">
+<META content="MSHTML 6.00.2716.2200" name=GENERATOR></HEAD>
+<BODY text=#808080 vLink=#666699 aLink=#990099 link=#3333cc bgColor=#ffffff><!--mstheme--><FONT
+face="Verdana, Arial, Helvetica"><!--webbot bot="Reply" I-Article="85" I-ParentArticle="0" U-Discussion-Url="../kbase_post.html" S-Dir-Name="_kbase" startspan --><!--webbot bot="Reply" endspan i-checksum="0" --><!--webbot bot="Include" U-Include="../_private/kbase_ahdr.htm" TAG="BODY" startspan -->
+<H1><!--mstheme--><FONT color=#003366>OWL NExt - Knowledge
+Base<!--mstheme--></FONT></H1>
+<P>[ <A href="http://owlnext.sourceforge.net/index.html" target=_top>Home</A> |
+<A href="http://owlnext.sourceforge.net/kbase_toc.html#00000055" target=""
+webbot-href="--WEBBOT-TOC-../kbase_toc.html--">Contents</A> | <A
+href="http://owlnext.sourceforge.net/kbase_srch.html" target="">Search</A> | <A
+href="http://owlnext.sourceforge.net/_vti_bin/shtml.exe/_kbase/00000065.htm/nav?next"
+name=disabled webbot-href="--WEBBOT-NEXT--">Next</A> | <A
+href="http://owlnext.sourceforge.net/_vti_bin/shtml.exe/_kbase/00000065.htm/nav?prev"
+name=disabled webbot-href="--WEBBOT-PREV--">Previous</A> | <A name=disabled
+webbot-href="--WEBBOT-UP--">Up</A> ] </P><!--msthemeseparator-->
+<P align=center></P><!--webbot bot="Include" endspan i-checksum="45205" -->
+<H2><!--mstheme--><FONT color=#003366>Bcc32 5.5 startup objs and libs<!--mstheme--></FONT></H2><!--webbot bot="FormInsertHere" DESCR="The FrontPage FormInsertHere Component indicates the point in an HTML file where you want a default, Registration, or Discussion Component to insert new results." startspan --><!--webbot bot="FormInsertHere" endspan i-checksum="0" -->
+<P><B>Date: </B>20 Mar 2000<BR><B>Time: </B>6:48:36<BR><B>Remote Name:
+</B>207.177.63.98<BR></P>
+<H3><!--mstheme--><FONT color=#003366>Comments<!--mstheme--></FONT></H3>
+<P>Q. BCC32 5.5 info needed please.What six start up objs go with what four
+libs.<BR>A.&nbsp;&nbsp;<BR>&gt;Windows plain?<BR><BR><B>c0w32.obj + import32.lib
++ cw32.lib</B><BR><BR>&gt;Windows multi threaded?<BR><BR><B>c0w32.obj +
+import32.lib + cw32mt.lib</B><BR><BR>&gt;Windows DLL plain?<BR><BR><B>c0d32.obj
++ import32.lib + cw32.lib</B><BR><BR>&gt;Windows DLL multi
+threaded?<BR><BR><B>c0d32.obj + import32.lib + cw32mt.lib</B><BR><BR>&gt;Console
+plain?<BR><BR><B>c0x32.obj + import32.lib + cw32.lib</B><BR><BR>&gt;Console
+multi threaded?<BR><BR><B>c0x32.obj + import32.lib +
+cw32mt.lib</B><BR><BR>&gt;Console DLL plain?<BR>&gt;Console DLL multi
+threaded?<BR><BR>What is the difference between a console DLL and a GUI
+DLL?<BR><BR>To summarize the startup OBJs:<BR><!--mstheme--></FONT>
+<TABLE borderColorDark=#003366 width="100%" borderColorLight=#c0c0c0 border=1>
+  <TBODY>
+  <TR>
+    <TD width="14%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">c0d32.obj&nbsp;<!--mstheme--></FONT></TD>
+    <TD width="42%"><!--mstheme--><FONT face="Verdana, Arial, Helvetica">DLL
+      startup module<!--mstheme--></FONT></TD>
+    <TD width="44%"><!--mstheme--><FONT
+face="Verdana, Arial, Helvetica">&nbsp;<!--mstheme--></FONT></TD></TR>
+  <TR>
+    <TD width="14%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">c0d32w.obj<!--mstheme--></FONT></TD>
+    <TD width="42%"><!--mstheme--><FONT face="Verdana, Arial, Helvetica">DLL
+      startup module<!--mstheme--></FONT></TD>
+    <TD width="44%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">Wide-char
+  version<!--mstheme--></FONT></TD></TR>
+  <TR>
+    <TD width="14%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">c0d32x.obj<!--mstheme--></FONT></TD>
+    <TD width="42%"><!--mstheme--><FONT face="Verdana, Arial, Helvetica">DLL
+      startup module<!--mstheme--></FONT></TD>
+    <TD width="44%"><!--mstheme--><FONT face="Verdana, Arial, Helvetica">no
+      exception handling<!--mstheme--></FONT></TD></TR>
+  <TR>
+    <TD width="14%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">c0pkg32.obj<!--mstheme--></FONT></TD>
+    <TD width="42%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">Package startup
+      module<!--mstheme--></FONT></TD>
+    <TD width="44%"><!--mstheme--><FONT
+face="Verdana, Arial, Helvetica">&nbsp;<!--mstheme--></FONT></TD></TR>
+  <TR>
+    <TD width="14%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">c0w32.obj<!--mstheme--></FONT></TD>
+    <TD width="42%"><!--mstheme--><FONT face="Verdana, Arial, Helvetica">GUI
+      EXE startup module<!--mstheme--></FONT></TD>
+    <TD width="44%"><!--mstheme--><FONT
+face="Verdana, Arial, Helvetica">&nbsp;<!--mstheme--></FONT></TD></TR>
+  <TR>
+    <TD width="14%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">c0w32w.obj<!--mstheme--></FONT></TD>
+    <TD width="42%"><!--mstheme--><FONT face="Verdana, Arial, Helvetica">GUI
+      EXE startup module<!--mstheme--></FONT></TD>
+    <TD width="44%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">Wide-char
+  version<!--mstheme--></FONT></TD></TR>
+  <TR>
+    <TD width="14%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">c0x32.obj<!--mstheme--></FONT></TD>
+    <TD width="42%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">32-bit console-mode EXE startup module<!--mstheme--></FONT></TD>
+    <TD width="44%"><!--mstheme--><FONT
+face="Verdana, Arial, Helvetica">&nbsp;<!--mstheme--></FONT></TD></TR>
+  <TR>
+    <TD width="14%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">c0x32w.obj<!--mstheme--></FONT></TD>
+    <TD width="42%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">32-bit console-mode EXE startup module<!--mstheme--></FONT></TD>
+    <TD width="44%"><!--mstheme--><FONT
+      face="Verdana, Arial, Helvetica">Wide-char
+  version<!--mstheme--></FONT></TD></TR></TBODY></TABLE><!--mstheme--><FONT
+face="Verdana, Arial, Helvetica">
+<P><B>The d stands for dll, the w for windows GUI exe's, and the x is for
+console<BR>mode exe's.<BR></B><BR>The RTL libs
+are<BR><BR>cp32mt.lib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; VCL-compliant C RTL
+multithreaded static library<BR>cp3250mt.dll, cp32mti.lib&nbsp;&nbsp;&nbsp;
+VCL-compliant import library for multithreaded C
+RTL<BR>cw32.lib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RTL
+single-threaded static library<BR>cw3250.dll, cw32i.lib&nbsp; Import library for
+RTL cw3250.dll<BR>cw32mt.lib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RTL multi-threaded
+static library<BR>cw3250mt.dll, cw32mti.lib&nbsp;&nbsp;&nbsp;&nbsp; Import
+library for multithreaded RTL cw3250mt.dll<BR><BR>The 'p' in 'cp' means pascal.
+No need for that one. The 'i's stand for<BR>import library. mt stands for
+multi-threaded. For simplicity, you can stic<BR>to cw32.lib and cw32mt.lib for
+apps compiled with the free bc55.<BR><BR>Harold Howe (TeamB) <BR><!--webbot bot="Include" U-Include="../_private/kbase_aftr.htm" startspan --><!--msthemeseparator-->
+<P align=center></P>
+<H5><!--mstheme--><FONT color=#003366>Last changed: July 14, 2001
+<!--mstheme--></FONT></H5><!--webbot bot="Include" endspan i-checksum="27775" --><!--mstheme--></FONT></BODY></HTML>

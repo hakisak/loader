@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services>
+   <service>
+      <name>test.sample.MyApp</name>
+      <display-name>Sample App</display-name>
+      <href>sample.srv</href>
+   </service>
+</services>

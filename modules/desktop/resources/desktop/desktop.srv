@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>org.xito.desktop</name>
+   <display-name>Xito Desktop</display-name>
+   <desc></desc>
+   <service-cls>org.xito.desktop.DesktopService</service-cls>
+   <version>${project.version}</version>
+   <classpath>
+      <service-ref name="org.xito.dcf" href="../dcf/dcf.srv"/>
+      <lib path="${project.build.finalName}.jar"/>
+   </classpath>
+</service>

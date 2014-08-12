@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>test.xito.jdic_test</name>
+   <display-name>JDIC Test</display-name>
+   <version>1.0.0</version>
+   <service-cls>test.xito.jdic.MainTest</service-cls>
+   <classpath>
+      <service-ref name="org.jdesktop.jdic"/>
+      <lib path="xito-jdic-test.jar"/>
+   </classpath>
+</service>

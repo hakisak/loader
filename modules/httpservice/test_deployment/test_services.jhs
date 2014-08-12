@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services>
+
+	<descriptor>
+		<interface>test.TestService</interface>
+		<impl></impl>
+	</descriptor>
+	
+	<descriptor>
+		<interface>test.TestParamsService</interface>
+		<impl></impl>
+	</descriptor>
+	
+	<descriptor>
+		<interface>test.TestExceptionService</interface>
+		<impl></impl>
+	</descriptor>
+</services>

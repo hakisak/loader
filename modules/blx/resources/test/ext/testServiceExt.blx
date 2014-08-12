@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<blx:document xmlns:blx="blx">
+   <blx:alias name="srvext" service="test.srvext.testextsrv"/>
+   <blx:object ext-alias="srvext" class="test.srvext.SrvExtClass1"/> 
+</blx:document>
+
+<!--
+<blx:document xmlns:blx="blx">
+   <blx:object ext-href="Ext1.blxe" class="test.ext1.Ext1Class1"/> 
+</blx:document>
+-->

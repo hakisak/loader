@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<group name="Sun" id="sun">
+    <item type="app" id="sun_examples_site"/>
+    <item type="app" id="military_game"/>
+    <item type="app" id="notepad_jnlp"/>
+    <item type="app" id="swingset"/>
+</group>

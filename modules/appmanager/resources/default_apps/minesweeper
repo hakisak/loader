@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp-action name="MineSweeper" title="" id="minesweeper"
+    address="http://home.intranet.org/~mouse/java/prog/minesweeper/minesweeper.jnlp"
+    use-webstart="false" separate-vm="false"/>

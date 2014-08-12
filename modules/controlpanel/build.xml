@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="xito-controlpanel" basedir=".">
+    <property name="test.main.class" value="test.Main"/>
+    <property name="project.version" value="0.9.0"/>
+    <import file="../../build-service-include.xml"/>
+
+    <!-- Classpath that this module needs to build -->
+    <path id="classpath">
+        <pathelement location="../bootstrap/build/classes"/>
+        <pathelement location="../org.xito/build/classes"/>
+    </path>
+
+    <fileset id="jar.fileset" dir="${classes}">
+        <include name="org/xito/controlpanel/**"/>
+    </fileset>
+
+    <!-- Build Dependancies use to build modules that this module
+         is dependant on -->
+    <target name="build-dependancies">
+        <ant antfile="../bootstrap/build.xml" target="build" inheritall="false"/>
+    </target>
+
+</project>

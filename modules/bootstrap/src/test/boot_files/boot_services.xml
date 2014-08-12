@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Test several boot services. Service 1 will be in a seperate boot dir which will cause a Security prompt to occur
+The rest live in the Boot Dir so they will default to Trusted Code.
+
+-->
+<services>
+   <service>
+      <name>test.service1</name>
+      <display-name>Service 1</display-name>
+      <href>boot/service1.srv</href>
+   </service>
+   <service>
+      <name>test.service2</name>
+      <display-name>Service 2</display-name>
+      <href>service2.srv</href>
+   </service>
+   <service>
+      <name>test.service3</name>
+      <display-name>Service 3</display-name>
+      <href>service3.srv</href>
+   </service>
+   <service>
+      <name>test.appstarter</name>
+      <display-name>App Starter</display-name>
+      <href>appstarter.srv</href>
+   </service>
+</services>

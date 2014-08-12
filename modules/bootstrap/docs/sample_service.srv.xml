@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+  This is a sample Service Descriptor File. A Shell Service describes a set of java classes 
+  and a Service File that can be started automatically when the service is loaded
+  -->
+<service>
+   <name>com.test.srvname</name>
+   <display-name>Name of Service</display-name>
+   <desc>Description of Service</desc>
+   <version>Version of Service</version>
+   <service-cls>com.test.srvname</service-cls>
+   <include-classpath>true</include-classpath>
+   <append-to-classpath>true</append-to-classpath>
+   <classpath>
+      <lib path="path to a jar relative to this file"/>
+      <lib path="myservice/myservice.jar"/>
+   </classpath>
+</service>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="xito">
+
+    <property file="build.properties"/>
+
+    <!-- ********************************************************************
+    Build Specific Module
+    ******************************************************************** -->
+    <target name="build">
+        <ant antfile="modules/${build.module}/build.xml" target="build" inheritAll="false"/>
+    </target>
+    
+    
+    <!-- ********************************************************************
+    Clean Specific Module
+    ******************************************************************** -->
+    <target name="clean">
+        <ant antfile="modules/${build.module}/build.xml" target="clean" inheritAll="false"/>
+    </target>
+    
+    
+    <!-- ********************************************************************
+    Test Specific Module
+    ******************************************************************** -->
+    <target name="test">
+        <ant antfile="modules/${build.module}/build.xml" target="test" inheritAll="false"/>
+    </target>
+    
+    <!-- ********************************************************************
+    Debug Specific Module
+    ******************************************************************** -->
+    <target name="debug">
+        <ant antfile="modules/${build.module}/build.xml" target="debug" inheritAll="false"/>
+    </target>
+    
+    
+    <!-- ********************************************************************
+    Debug Specific Module
+    ******************************************************************** -->
+    <target name="clean_all">
+    	<ant antfile="modules/bootstrap/build.xml" target="clean" inheritAll="false"/>
+    </target>
+    
+</project>

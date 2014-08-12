@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services>
+   <service>
+      <name>org.xito.splash</name>
+      <display-name>Splash</display-name>
+      <href>../xito-splashscreen/xito-splashscreen.srv</href>
+   </service>
+</services>

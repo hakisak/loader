@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<blx:extension xmlns:blx="blx">
+   <name>test.ext3</name>
+   <version>1.0</version>
+   <description>This is Ext3 Test Extension</description>
+   <classpath>
+      <lib path="ext3.jar"/>
+   </classpath>
+</blx:extension>

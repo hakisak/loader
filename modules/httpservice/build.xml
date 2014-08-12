@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<project name="http_service" default="build">
+
+<!-- load build properties -->
+<property file="build.properties" />	
+
+<!-- client classpath -->
+<path id="client.class.path">
+	<fileset dir="lib">
+		<include name="client/**.jar"/>
+    </fileset>
+</path>	
+	
+<!-- server classpath -->
+<path id="server.class.path">
+	<fileset dir="lib">
+		<include name="server/**.jar"/>
+    </fileset>
+</path>
+	
+<!-- ClassPath -->
+<path id="main.class.path">
+	<path refid="server.class.path" />
+	<path refid="client.class.path" />
+	<pathelement path="build/classes" />
+</path>	
+	
+<!-- ClassPath -->
+<path id="test.class.path">
+	<path refid="server.class.path" />
+	<path refid="client.class.path" />
+</path>	
+	
+	
+<!-- *******************************
+Build the Project
+************************************ -->
+<target name="build">
+	
+	<antcall target="war_test"/>
+</target>
+	
+<!-- *******************************
+Build the Project
+************************************ -->
+<target name="jar" depends="compile">
+
+	<jar destfile="build/http_service.jar">
+		<fileset dir="build/classes">
+			<include name="org/xito/httpservice/**"/>
+		</fileset>
+	</jar>
+	
+	<jar destfile="build/test_service.jar">
+		<fileset dir="build/classes">
+			<include name="test/**"/>
+		</fileset>
+	</jar>
+	
+</target>
+
+<!-- *******************************
+Compile the Project
+************************************ -->
+<target name="compile">
+
+	<mkdir dir="build/classes" />
+
+	<javac srcdir="src" destdir="build/classes" debug="true" source="1.4" target="1.4" fork="true">
+		<classpath>
+			<path refid="main.class.path" />
+			<path refid="test.class.path" />
+		</classpath>
+	</javac>
+
+	<copy todir="build/classes">
+		<fileset dir="src">
+			<include name="**/*.xml" />
+		</fileset>
+	</copy>
+
+</target>
+
+<!-- *******************************
+GenTest
+************************************ -->
+<target name="gen_test">
+
+	<java classname="org.xito.httpservice.gentool.GenTool" fork="true">
+		<classpath>
+			<path refid="main.class.path" />
+			<path refid="test.class.path" />
+		</classpath>
+		<arg line="test_deployment/test_services.jhs"/>
+	</java>
+	
+</target>	
+	
+	
+<!-- *******************************
+War
+************************************ -->
+<target name="war_test" depends="jar, gen_test">
+	
+	<mkdir dir="dist" />
+	
+	<war destfile="dist/http_service_test.war" webxml="generated/server/WEB-INF/web.xml">
+		<lib dir="build">
+	  		<include name="http_service.jar"/>
+	   	<include name="test_service.jar"/>
+	   </lib>	
+		<lib dir="lib/server">	
+	    	<include name="*.jar"/>
+			<exclude name="servlet_2.3.jar"/>
+	  	</lib>
+	</war>
+</target>
+
+<!-- *******************************
+Deploy_war
+************************************ -->
+<target name="deploy_war_test" depends="war_test">
+	<echo message="coping:dist/http_service_test.war to ${catalina.home}/webapps"/> 
+	<copy todir="${catalina.home}/webapps" file="dist/http_service_test.war"/>
+</target>
+	
+<!-- *******************************
+test
+************************************ -->
+<target name="test" depends="build">
+	
+	<java classname="test.client.TestStubClient" fork="true">
+		<classpath>
+			<path refid="test.class.path" />
+			<pathelement location="build/classes"/>
+		</classpath>
+	</java>
+	
+	<java classname="test.client.TestProxyClient" fork="true">
+		<classpath>
+			<path refid="test.class.path" />
+			<pathelement location="build/classes"/>
+		</classpath>
+	</java>
+	
+	<java classname="test.client.TestClientTask" fork="true">
+			<classpath>
+				<path refid="test.class.path" />
+				<pathelement location="build/classes"/>
+			</classpath>
+		</java>
+</target>	
+
+
+<!-- *******************************
+Clean
+************************************ -->
+<target name="clean">
+    <delete dir="build" />
+    <delete dir="generated" />
+</target>
+
+</project>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="include">
+    
+    <property name="project.version" value=""/>
+    <property name="build" location="${basedir}/build"/>
+    <property name="dist" location="${basedir}/dist"/>
+    <property name="classes" location="${build}/classes"/>
+    <property name="src" location="${basedir}/src"/>
+    <property name="jar.name" value="${ant.project.name}-${project.version}.jar"/>
+    <property name="jar.dev.name" value="${ant.project.name}-dev.jar"/>
+    <property name="test.args" value=""/>
+    <property name="source.level" value="1.5"/>
+    <property name="target.level" value="1.5"/>
+    <property name="keystore.alias" value="xito"/>
+    <property name="keystore.pass" value="keypass"/>
+
+    <!-- override this in module to specify which files should be included in the jar -->
+    <fileset id="jar.fileset" dir="${classes}">
+        <include name="**"/>
+    </fileset>
+    
+    <!-- override this in module build file to specifiy classpath -->
+    <path id="classpath"/>
+    
+    <!-- override this in module build file to build specific dependancies first -->
+    <target name="build-dependancies">
+    </target>
+    
+    <!-- Builds the src dir in a module 
+    
+    Uses build, src, and classes properties
+    -->
+    <target name="build" depends="build-dependancies">
+        <echo message="Building ${ant.project.name}"/>
+        <mkdir dir="${build}"/>
+        <mkdir dir="${classes}"/>
+        
+        <javac debug="true" srcdir="${src}" destdir="${classes}" target="${target.level}" source="${source.level}" includeantruntime="false">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+        </javac>
+        
+        <copy todir="${classes}">
+            <fileset dir="${src}">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    <!-- Jars a module into the ant.project.name jar file
+    uses jar.fileset property 
+    -->
+    <target name="jar" depends="build">
+        <jar destfile="${build}/${jar.name}">
+            <fileset refid="jar.fileset"/>
+        </jar>
+        <copy file="${build}/${jar.name}" tofile="${build}/${jar.dev.name}"/>
+
+        <!-- copy all 3rdParty jars -->
+        <copy todir="${build}/${ant.project.name}" failonerror="false">
+            <fileset dir="lib">
+                <include name="**/*.*"/>
+            </fileset>
+        </copy>
+
+        <antcall target="post_jar"/>
+    </target>
+
+    <!-- override this target to include post jaring tasks -->
+    <target name="post_jar"/>
+    
+    <!-- ****************************************************************
+    Tests a module 
+    ********************************************************************* -->
+    <target name="test" depends="build">
+        <echo message="Testing ${ant.project.name} args:${test.args}"/>
+         <java classname="${test.main.class}" fork="true">
+             <classpath>
+               <pathelement location="${classes}"/>
+               <path refid="classpath"/>
+             </classpath>
+             <arg line="${test.args}"/>
+             <jvmarg line="-ea"/>
+         </java>
+    </target>
+    
+    <!-- ****************************************************************
+    Debugs a module 
+    ********************************************************************* -->
+    <target name="debug" depends="build">
+        <echo message="Debugging ${ant.project.name}"/>
+         <java classname="${test.main.class}">
+             <classpath>
+               <pathelement location="${classes}"/>
+               <path refid="classpath"/>
+             </classpath>
+         <jvmarg line="-Xnoagent -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8000 -Xbootclasspath/a:${env.JAVA_HOME}/lib/tools.jar"/>
+         </java>
+    </target>
+    
+    <!-- builds javadoc for the model -->
+    <target name="javadoc">
+        <javadoc sourcepath="${src}" destdir="${build}/javadoc">
+        </javadoc>
+    </target>
+    
+    <!-- cleans the build dir of a module -->
+    <target name="clean">
+        <echo message="Cleaning ${ant.project.name}"/>
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
+        
+</project>

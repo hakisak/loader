@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>org.xito.xmldocs</name>
+   <display-name>XML Document Service</display-name>
+   <desc></desc>
+   <version>${project.version}</version>
+   <service-cls></service-cls>
+   <classpath>
+      <lib path="${project.build.finalName}.jar"/>
+      <lib path="jdom-1.1.1.jar"/>
+   </classpath>
+</service>

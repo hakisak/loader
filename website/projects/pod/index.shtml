@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+ 
+<HTML>
+ 
+<HEAD>
+<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252"> 
+<TITLE></TITLE>
+<LINK REL="STYLESHEET" HREF="../../xito.css"> 
+</HEAD>
+
+<BODY LANG="en-US">
+<TABLE WIDTH="89%" BORDER="0" CELLPADDING="0" CELLSPACING="5">
+<TR>
+<TD WIDTH="141" HEIGHT="113" VALIGN="MIDDLE" ALIGN="LEFT"
+ BGCOLOR="#FFFFFF">&nbsp;<IMG SRC="../../org.xito.launcher.images/pod_128.gif"
+ALT="{short description of image}" WIDTH="130" HEIGHT="142" BORDER="0"></TD>
+<TD WIDTH="671" HEIGHT="113"><IMG SRC="org.xito.launcher.images/pod_title.gif"
+ALT="{short description of image}" WIDTH="627" HEIGHT="129" BORDER="0"> </TD>
+</TR>
+<TR>
+<TD WIDTH="141" HEIGHT="30" VALIGN="TOP" ALIGN="LEFT">
+
+<!--#include virtual="podnav.txt" -->
+</TD>
+<TD WIDTH="671" HEIGHT="30" VALIGN="TOP" ALIGN="LEFT"> 
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="20">
+<TR>
+<TD WIDTH="100%" HEIGHT="403" VALIGN="TOP" ALIGN="LEFT"> <H2>OverView</H2>
+<P>POD (Portable Object Desktop). Provides a full Java based, cross-platform,
+object-oriented desktop environment that provides easy access to network based
+applications, including: Java Applets, Java Applications(JNLP), and Web Apps.
+POD is completely modular enabling systems to be integrated directly into the
+environment. </P>
+<H2>News</H2>
+<P>Version 0.6.5 now available.
+<A
+ HREF="http://sourceforge.net/project/showfiles.php?group_id=47029">Download</A>
+it now or use the <A HREF="quicksteps.shtml">QuickSteps</A> to install it on
+Windows.</P>
+<P><B>Features:</B></P>
+<UL>
+<LI>100% Java Application environment</LI>
+<LI>Java Applet Container/Launcher</LI>
+<LI>Java Application JNLP Launcher (Netx)</LI>
+<LI>Run multiple Applications in the Same VM (Saves tons of RAM)</LI>
+<LI>Full XML based component framework (BLX)</LI>
+<LI>Rich User Interface Environment</LI>
+<LI>Place Launchable Tiles right on the Native Desktop</LI>
+<LI>Create Sticky Notes on the Native Desktop</LI>
+<LI>Create TileSets (Collections of Tiles)</LI>
+<LI>Position the Master Tile in any desktop corner</LI>
+<LI>Tear-Off Menu support. The POD Master Menu can be torn off and placed on
+the Native Desktop.</LI>
+</UL>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<P></P>
+</BODY>
+</HTML>
+

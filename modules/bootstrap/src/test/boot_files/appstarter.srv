@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>test.appstarter</name>
+   <display-name>App Starter</display-name>
+   <desc>This Service Starts an Application</desc>
+   <version>1.0.0</version>
+   <service-cls>test.AppStarterService</service-cls>
+   <classpath>
+      <lib path="appstarter.jar"/>
+   </classpath>
+</service>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<blx:document>
+   <blx:object 
+      extension="ExtensionName"
+      ext-href="http://host/ext.jnlp"
+      version="1.0"
+      class="com.mycompany.package.MyObject">
+
+      <blx:object 
+         extension="ExtensionName"
+         ext-href="http://host/ext.jnlp"
+         version="1.0"
+         class="com.mycompany.package.MyObject2">
+
+      </blx:object>   
+   </blx:object>
+</blx:document>
+  

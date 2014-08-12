@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>org.xito.dcf</name>
+   <display-name>Desktop Component Framework</display-name>
+   <desc></desc>
+   <version>${project.version}</version>
+   <classpath>
+      <service-ref name="org.xito.blx" href="../blx/blx.srv"/>
+      <service-ref name="org.xito.dazzle" href="../dazzle/dazzle.srv"/>
+      <lib path="${project.build.finalName}.jar"/>
+   </classpath>
+</service>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="jdic">
+
+<import file="../import_build.xml"/>
+
+<!-- ************************************************
+<Module> Project
+
+Init all Parameters
+***************************************************** -->
+<target name="init">
+   <property file="../xito.properties"/>
+   <property name="build.dir" value="${basedir}/build"/>
+   <property name="jdic.build.number" value="0.9.1"/>
+
+   <mkdir dir="${build.dir}"/>
+   <mkdir dir="classes"/>
+
+</target>
+
+<!-- ************************************************
+Build all Dependancies
+***************************************************** -->
+<target depends="init" name="dependancies">
+      
+   <!-- build bootstrap -->
+   <ant dir="../bootstrap" target="build"/>
+
+</target>
+
+<!-- ************************************************
+Compile all Source and copy Resources to classpath
+***************************************************** -->
+<target name="compile" depends="dependancies" description="Compile all Java Files and Copy Resources">
+
+   <javac debug="true" deprecation="false" destdir="classes" srcdir="src" source="1.4" target="1.4">
+      <classpath>
+         <pathelement location="${build.dir}/boot.jar"/>
+         <pathelement location="3rdPartyLib/jdic.jar"/>
+      </classpath>
+   </javac>
+
+   <copy todir="classes">
+       <fileset dir="src">
+          <include name="**/*.au"/>
+          <include name="**/*.gif"/>
+          <include name="**/*.jpg"/>
+          <include name="**/*.png"/>
+          <include name="**/*.html"/>
+          <include name="**/*.properties"/>
+          <exclude name="**/*.class"/>
+       </fileset>
+   </copy>
+   
+</target>
+
+<!-- ************************************************
+JAR all Classes and Resources
+***************************************************** -->
+<target depends="init, compile" description="Creates Jars for all modules" name="jar">
+
+   <mkdir dir="${build.dir}"/>
+   <mkdir dir="${build.dir}"/>
+   <mkdir dir="${build.dir}/${ant.project.name}"/>
+
+   <!-- JDIC Srv Jar -->
+   <jar basedir="classes" compress="true" jarfile="${build.dir}/${ant.project.name}/jdic_srv.jar">
+       <exclude name="**/*.java"/>
+       <include name="org/xito/jdic/**"/>
+
+       <manifest>
+       <attribute name="Built-By" value="${user.name}"/>
+       <section name="org/xito/jdic/">
+         <attribute name="Specification-Title" value="${ant.project.name}"/>
+         <attribute name="Specification-Vendor" value="xito"/>
+         <attribute name="Implementation-Title" value="${ant.project.name}"/>
+         <attribute name="Implementation-Vendor" value="xito"/>
+       </section>
+       </manifest>
+   </jar>
+   
+   <antcall target="sign_jar">
+       <param name="jar_file" value="${build.dir}/${ant.project.name}/jdic_srv.jar"/>
+   </antcall>
+   
+</target>
+
+<!-- ************************************************
+Build Entire Project
+***************************************************** -->
+<target name="build" depends="jar">
+
+   <!-- Copy all Resources -->
+   <copy todir="${build.dir}/${ant.project.name}">
+      <fileset dir="resources/${ant.project.name}">
+         <include name="*.*"/>
+      </fileset>
+   </copy>
+   
+   <!-- Update Version number -->
+   <replace file="${build.dir}/${ant.project.name}/jdic.srv" token="@version@" value="${jdic.build.number}"/>
+   
+   <!-- Copy libs to build dir -->
+   <copy todir="${build.dir}/${ant.project.name}">
+      <fileset dir="3rdPartyLib">
+         <include name="jdic.jar"/>
+         <include name="windows/jdic_windows.jar"/>
+      	<include name="windows/jdic_stub_windows.jar"/>
+         <include name="mac/jdic_mac.jar"/>
+      	<include name="mac/jdic_stub_mac.jar"/>      	
+      </fileset>
+   </copy>
+   
+	<!-- sign main jdic jar -->
+   <antcall target="sign_jar">
+       <param name="jar_file" value="${build.dir}/${ant.project.name}/jdic.jar"/>
+   </antcall>
+	
+	<!-- sign windows jars -->
+	<antcall target="sign_jar">
+       <param name="jar_file" value="${build.dir}/${ant.project.name}/windows/jdic_windows.jar"/>
+   </antcall>
+	
+	<antcall target="sign_jar">
+       <param name="jar_file" value="${build.dir}/${ant.project.name}/windows/jdic_stub_windows.jar"/>
+   </antcall>
+
+	<!-- sign mac jars -->
+	<antcall target="sign_jar">
+       <param name="jar_file" value="${build.dir}/${ant.project.name}/mac/jdic_mac.jar"/>
+   </antcall>	
+	
+	<antcall target="sign_jar">
+       <param name="jar_file" value="${build.dir}/${ant.project.name}/mac/jdic_stub_mac.jar"/>
+   </antcall>
+      
+   <echo message="${ant.project.name} built!"/>
+</target>
+
+<target name="all" depends="build"/>
+   
+<!-- ************************************************
+Create Dist for this Project
+***************************************************** -->
+<target name="dist" depends="all" description="Creates Distribution">
+
+   <mkdir dir="dist"/>
+   <mkdir dir="dist-${jdic.build.number}"/>
+   
+   <copy todir="dist">
+       <fileset dir="${build.dir}" includes="**/*.*"/>
+   </copy>
+
+   <!-- Create zip archive of win32 dist -->
+   <zip destfile="dist-${jdic.build.number}/${ant.project.name}-${jdic.build.number}.zip">
+       <fileset dir="dist"/>
+   </zip>
+
+   <!-- create src zip -->
+   <antcall target="dist_src"/>
+
+   <delete dir="dist"/>
+</target>
+
+<!-- ************************************************
+Create Source Distribution for this Project
+***************************************************** -->
+<target depends="init" description="Creates SRC Distribution" name="dist_src">
+
+   <mkdir dir="dist-${jdic.build.number}"/>
+   <!-- Create zip archive of src -->
+   <zip destfile="dist-${jdic.build.number}/${ant.project.name}-${jdic.build.number}-src.zip">
+       <fileset dir="${basedir}">
+         <include name="jnlp/**"/>
+         <include name="src/**"/>
+         <include name="src_test/**"/>
+         <include name="win32/**"/>
+         <include name="build.number"/>
+         <include name="build.xml"/>
+       </fileset>
+   </zip>
+</target>
+
+<!-- ************************************************
+Debug this Project
+***************************************************** -->
+<target name="debug" depends="build_test_boot_dir" description="Debug">
+<echo message="Debug running on port:8000"/>
+<java classname="org.xito.boot.Boot" failonerror="true" fork="true">
+   <arg value="-bootdir"/>
+   <arg value="${build.dir}/test_boot_dir"/> 
+   <classpath>
+      <pathelement location="${build.dir}/boot.jar"/>
+   </classpath>
+    <jvmarg line="-Xnoagent -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=8000 -Xbootclasspath/a:${env.JAVA_HOME}/lib/tools.jar"/>
+</java>
+</target>
+
+<!-- ************************************************
+Test Boot Dir
+***************************************************** -->
+<target name="build_test_boot_dir" depends="build">
+
+   <mkdir dir="${build.dir}/test_boot_dir"/>
+   <copy todir="${build.dir}/test_boot_dir">
+       <fileset dir="resources/test">
+           <include name="**/*.*"/>
+       </fileset>
+   </copy>
+   
+   <!-- JDIC Test -->
+   <mkdir dir="${build.dir}/test_boot_dir/"/>
+   <jar basedir="classes" compress="true" jarfile="${build.dir}/test_boot_dir/${ant.project.name}_test.jar">
+       <exclude name="**/*.java"/>
+       <include name="test/xito/jdic/**"/>
+   </jar>
+
+</target>
+
+<!-- ************************************************
+Test Service Functionality
+***************************************************** -->
+<target name="test" depends="build_test_boot_dir" description="Test Service">
+<java classname="org.xito.boot.Boot" failonerror="true" fork="true">
+   <arg value="-bootdir"/>
+   <arg value="${build.dir}/test_boot_dir"/> 
+   <classpath>
+      <pathelement location="${build.dir}/boot.jar"/>
+   </classpath>
+</java>
+</target>
+
+<!-- ************************************************
+Create JavaDoc for this Project
+***************************************************** -->
+<target depends="init" description="Generate Javadoc for the src Tree" name="javadoc">
+<delete dir="javadoc"/>
+<mkdir dir="javadoc"/>
+<javadoc destdir="javadoc" packagenames="org.xito.*">
+    <sourcepath>
+        <pathelement location="${src.dir}"/>
+    </sourcepath>
+</javadoc>
+</target>
+
+<!-- ************************************************
+Clean this Build
+***************************************************** -->
+<target depends="init" description="Clean all build products." name="clean">
+   <delete dir="classes"/>
+   <delete dir="build"/>
+</target>
+
+</project>

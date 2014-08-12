@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>test.service1</name>
+   <display-name>Service 1</display-name>
+   <desc>This is a Test Service</desc>
+   <version>1.0.0</version>
+   <service-cls>test.Service1</service-cls>
+   <append-to-classpath>true</append-to-classpath>
+   <classpath>
+      <lib path="service1.jar"/>
+   </classpath>
+   <native-libs>
+      <lib path="native.jar" os="windows"/>
+   </native-libs>
+</service>

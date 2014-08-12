@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+ 
+<HTML>
+ 
+<HEAD>
+<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252"> 
+<TITLE></TITLE>
+<LINK REL="STYLESHEET" HREF="../../xito.css"> 
+</HEAD>
+
+<BODY LANG="en-US">
+<P></P>
+<TABLE WIDTH="89%" BORDER="0" CELLPADDING="0" CELLSPACING="5">
+<TR>
+<TD WIDTH="141" HEIGHT="113" VALIGN="MIDDLE" ALIGN="LEFT"
+ BGCOLOR="#FFFFFF">&nbsp;<IMG SRC="../../org.xito.launcher.images/pod_128.gif"
+ALT="{short description of image}" WIDTH="130" HEIGHT="142" BORDER="0"></TD>
+<TD WIDTH="671" HEIGHT="113"><IMG SRC="org.xito.launcher.images/pod_title.gif"
+ALT="{short description of image}" WIDTH="627" HEIGHT="129" BORDER="0"> </TD>
+</TR>
+<TR>
+<TD WIDTH="141" HEIGHT="30" VALIGN="TOP" ALIGN="LEFT"> 
+<!--#include virtual="podnav.txt" -->
+</TD>
+<TD WIDTH="671" HEIGHT="30" VALIGN="TOP" ALIGN="LEFT"> 
+<TABLE WIDTH="100%" BORDER="0" CELLSPACING="0" CELLPADDING="20">
+<TR>
+<TD WIDTH="100%" HEIGHT="403" VALIGN="TOP" ALIGN="LEFT"> <H2>QuickSteps to Run
+POD on Windows</H2>
+<P>It is as easy as 3 simple steps to run POD on Windows. To get POD up and
+running simple follow the steps below. If you are running POD on another
+platform other then MS Windows please follow the instructions on the
+<A
+ HREF="http://sourceforge.net/project/showfiles.php?group_id=47029">download</A>
+page. </P>
+<TABLE WIDTH="97%" BORDER="0">
+<TBODY>
+<TR>
+<TD WIDTH="228">&nbsp;<A HREF="http://java.sun.com/getjava/download.html"><IMG
+HEIGHT="194" ALT="{short description of image}" SRC="org.xito.launcher.images/install_java.gif"
+WIDTH="187" BORDER="0"></A></TD>
+<TD VALIGN="top" ALIGN="left" WIDTH="645"> <H3>&nbsp;Install Java</H3>
+<P>First install <A HREF="http://java.sun.com/getjava/download.html">Java
+1.4</A> from the Sun website. Installing Java on the system will provide the
+machine with the latest and greatest technology and provide Java support in
+Internet Explorer. You can skip this step if you have already installed at
+least Java 1.4 on your machine.</P>
+<P>Note: POD is not supported and will not run on early versions of the JDK.
+JDK 1.4.1 is available for Windows, Linux, Solaris, and also Mac OS X.</P>
+</TD>
+</TR>
+<TR>
+<TD WIDTH="228">&nbsp;<A
+HREF="http://sourceforge.net/project/showfiles.php?group_id=47029"><IMG
+HEIGHT="194" ALT="{short description of image}" SRC="org.xito.launcher.images/install_pod.gif"
+WIDTH="187" BORDER="0"></A></TD>
+<TD VALIGN="top" ALIGN="left" WIDTH="645"> <H3>&nbsp;Install Windows POD Setup
+application</H3>
+<P>Simply download the latest
+<A HREF="https://sourceforge.net/project/showfiles.php?group_id=47029">POD
+setup</A> for windows and launch the setup application. This will install POD
+on your machine and place an Icon on your Desktop for easy access to the POD
+environment. </P>
+</TD>
+</TR>
+<TR>
+<TD WIDTH="228">&nbsp;<IMG HEIGHT="194" ALT="{short description of image}"
+SRC="org.xito.launcher.images/run_pod.gif" WIDTH="187" BORDER="0"></TD>
+<TD VALIGN="top" ALIGN="left" WIDTH="645"> <H3>&nbsp;Run POD</H3>
+<P>Launch the POD environment by double clicking on the POD icon. The POD
+environment will be launched on top of your existing desktop environment.
+Additional components may need to be downloaded from the Internet at this time.
+Components will be cached and subsequent launches will be performed more
+quickly.</P>
+<P>Now you are ready to use the POD environment.</P>
+</TD>
+</TR>
+</TBODY>
+</TABLE>
+<P></P>
+</TD>
+</TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE>
+<P></P>
+</BODY>
+</HTML>
+

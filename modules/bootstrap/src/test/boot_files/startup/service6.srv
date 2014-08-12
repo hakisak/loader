@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>test.service6</name>
+   <display-name>Service 6</display-name>
+   <desc>This is a Test Service</desc>
+   <version>1.0.0</version>
+   <service-cls>test.Service6</service-cls>
+   <classpath>
+      <lib path="service6.jar"/>
+      <service-ref name="test.service7" href="service7.srv"/>
+   </classpath>
+</service>

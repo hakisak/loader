@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applet-action name="Power of Ten" title="" id="power-of-ten"
+    address="http://micro.magnet.fsu.edu/primer/java/scienceopticsu/powersof10/index.html"
+    use-browser="false" separate-vm="false" custom-config="false"/>

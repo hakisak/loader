@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp-action name="de_roids" title="Democrat Roids"
+    id="democrat_roids"
+    address="http://jaxito.com/democrat_roids.jnlp"
+    use-webstart="false" separate-vm="false"/>

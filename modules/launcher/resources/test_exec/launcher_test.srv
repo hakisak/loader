@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>test.xito.launcher_test</name>
+   <display-name>Launcher Test</display-name>
+   <version>1.0.0</version>
+   <service-cls>org.xito.launcher.test.MainPanel</service-cls>
+   <classpath>
+      <service-ref name="org.xito.launcher"/> 
+      <service-ref name="org.jdesktop.jdic"/>
+   </classpath>
+</service>

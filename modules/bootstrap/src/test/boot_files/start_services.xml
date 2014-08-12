@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services>
+
+   <service>
+      <name>test.service4</name>
+      <display-name>Service 4</display-name>
+      <href>startup/service4.srv</href>
+   </service>
+   <service>
+      <name>test.service5</name>
+      <display-name>Service 5</display-name>
+      <href>startup/service5.srv</href>
+   </service>
+   <service>
+      <name>test.service6</name>
+      <display-name>Service 6</display-name>
+      <href>startup/service6.srv</href>
+   </service>
+   
+   <!-- Serivce 7 is started by Service 6 -->
+   
+   <service>
+      <name>test.shutdown</name>
+      <display-name>Shutdown Service</display-name>
+      <href>startup/shutdown.srv</href>
+   </service>
+</services>

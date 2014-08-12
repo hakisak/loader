@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applet-action name="RealSpace2" title="Real Space 2"
+    id="jtrack"
+    address="http://www.arcadetown.com/realspace2/playgame.asp?aid=697136"
+    use-browser="false" separate-vm="false" custom-config="false"/>

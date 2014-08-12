@@ -1,0 +1,4 @@
+-IC:\Borland\BCC55\Include
+-IC:\java\j2sdk1.4.1_01\include
+-IC:\java\j2sdk1.4.1_01\include\win32
+-LC:\Borland\BCC55\Lib

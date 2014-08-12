@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applet-action
+    address="http://xito.sourceforge.net/apps/games/tailgunner/"
+    custom-config="false" id="tailgunner" name="TailGunner"
+    separate-vm="false" title="" use-browser="false">
+    <applet alt="" archive="" code="TailGunner"
+        codebase="http://xito.sourceforge.net/apps/games/tailgunner/"
+        height="400" name="TailGunner" width="700"/>
+</applet-action>

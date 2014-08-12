@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<group name="Windows Apps" id="windows">
+    <item type="app" id="calc"/>
+    <item type="app" id="notepad"/>
+</group>

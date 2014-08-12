@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applet-action name="FreeCell" title="" id="freecell"
+    address="http://www.idiotsdelight.net/v109/freecell.html"
+    use-browser="false" separate-vm="false" custom-config="false">
+    <applet name="FreeCell" alt="" code=""
+        codebase="http://www.stroehmer.de/games/Java/Card/JSolitaire/jsolitaire_1_08c/"
+        archive="" width="0" height="0"/>
+</applet-action>

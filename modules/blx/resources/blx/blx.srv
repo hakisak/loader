@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>org.xito.blx</name>
+   <display-name>BLX Component Framework</display-name>
+   <desc></desc>
+   <version>${project.version}</version>
+   <service-cls>org.xito.blx.BLXService</service-cls>
+   <append-to-classpath>true</append-to-classpath>
+   <classpath>
+      <service-ref name="org.xito.xmldocs" href="../xmldocs/xmldocs.srv"/>
+      <service-ref name="org.xito.launcher" href="../launcher/launcher.srv"/>
+      <lib path="${project.build.finalName}.jar"/>
+   </classpath>
+</service>

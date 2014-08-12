@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services>
+   <service>
+      <name>org.xito.prefs</name>
+      <display-name>Prefences</display-name>
+      <href>../xito-prefs/xito-prefs.srv</href>
+   </service>
+</services>

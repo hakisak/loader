@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sys-action name="Calc" title="Calc" id="calc" exec="calc.exe"
+    start-in="" args=""/>

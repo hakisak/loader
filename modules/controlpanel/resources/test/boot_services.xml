@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<services>
+   <service>
+      <name>org.xito.controlpanel</name>
+      <display-name>Control Panel</display-name>
+      <href>../controlpanel/controlpanel.srv</href>
+   </service>
+</services>

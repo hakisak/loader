@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>org.xito.dcftesting</name>
+   <display-name>DCF Testing Service</display-name>
+   <desc></desc>
+   <version></version>
+   <service-cls>test.testcases.DCFTestingService</service-cls>
+   <classpath>
+      <service-ref name="org.xito.dcf" href="../xito-dcf/xito-dcf.srv"/> 
+      <service-ref name="org.xito.testing" href="../xito-testing/xito-testing.srv"/> 
+      <lib path="xito-dcf-test.jar"/>
+   </classpath>
+</service>

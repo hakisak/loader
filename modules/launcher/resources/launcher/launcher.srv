@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>org.xito.launcher</name>
+   <display-name>Launcher Service</display-name>
+   <desc>Service enables Java, JNLP, Applet, Web Browser, Execution</desc>
+   <version>${project.version}</version>
+   <service-cls>org.xito.launcher.LauncherService</service-cls>
+   <classpath>
+      <service-ref name="org.xito.xmldocs" href="../xmldocs/xmldocs.srv"/>
+      <service-ref name="org.xito.dazzle" href="../dazzle/dazzle.srv"/>
+      <service-ref name="org.xito.prefs" href="../prefs/prefs.srv"/>
+      <service-ref name="org.jdesktop.jdic" href="../jdic/jdic.srv"/>
+      <lib path="${project.build.finalName}.jar"/>
+      <lib path="tidy.jar"/>
+      <lib path="jnlp.jar"/>
+      <!-- <lib path="/Library/Java/JavaVirtualMachines/jdk1.7.0_07.jdk/Contents/Home/jre/lib/plugin.jar"/> -->
+      <!-- <lib path="plugin.jar"/> -->
+   </classpath>
+</service>

@@ -1,0 +1,86 @@
+<project name="xito-org.xito" basedir=".">
+    <property name="project.version" value="1.4.1"/>
+	 <property name="test.main.class" value="test.xito.org.xito.DialogTest"/>
+    <!-- <property name="test.main.class" value="test.xito.org.xitoreferredSizeLayout"/> -->
+    <import file="../../build-include.xml"/>
+    
+    <!-- include src in classpath so that test code viewer will work -->
+    <path id="classpath">
+        <dirset dir="${src}"/>
+        <pathelement location="../miglayout/build/classes"/>
+    </path>
+
+    <target name="build-dependancies">
+        <ant antfile="../miglayout/build.xml" target="build" inheritall="false"/>
+    </target>
+        
+    <!-- ****************************************************************
+    Build the Jar
+    ********************************************************************* -->
+    <target name="jar" depends="build">
+        <!-- versioned jar -->
+        <jar destfile="${build}/${ant.project.name}-${project.version}.jar">
+            <manifest>
+                <attribute name="Built-By" value="Xito.org"/>
+                <section name="common">
+                    <attribute name="Specification-Title" value=""/>
+                    <attribute name="Specification-Version" value="${project.version}"/>
+                    <attribute name="Specification-Vendor" value="xito"/>
+                    <attribute name="Implementation-Title" value=""/>
+                    <attribute name="Implementation-Version" value="${project.version}"/>
+                    <attribute name="Implementation-Vendor" value="xito"/>
+                </section>
+            </manifest>
+
+            <fileset dir="${classes}">
+                <include name="org/xito/org.dialog/**"/>
+            </fileset>
+            <fileset dir="../miglayout/build/classes">
+                <include name="org/xito/miglayout/**"/>
+            </fileset>
+        </jar>
+        <!-- copy the jar for dev purposes -->
+        <copy file="${build}/${ant.project.name}-${project.version}.jar" tofile="${build}/${ant.project.name}-dev.jar"/>
+    </target>
+    
+    <fileset id="jartest.fileset" dir="${classes}">
+        <include name="test/xito/org.dialog/**"/>
+    </fileset>
+    
+    <target name="jar-test">
+        <jar destfile="${build}/${ant.project.name}-test-${project.version}.jar">
+            <fileset refid="jartest.fileset"/>
+            <fileset dir="${src}" includes="test/xito/**/*.java"/>
+            <manifest>
+                <attribute name="Built-By" value="Xito"/>
+                <attribute name="Main-Class" value="test.xito.org.xito.DialogTest"/>
+                <attribute name="Class-Path" value="${ant.project.name}-${project.version}.jar"/>
+            </manifest>
+
+        </jar>  
+    </target>
+    
+    <target name="dist" depends="jar, jar-test, javadoc">
+        <mkdir dir="${dist}"/>
+        <zip destfile="${dist}/${ant.project.name}-${project.version}.zip">
+            <filename name="${build}/${ant.project.name}-${project.version}.jar"/>
+            <filename name="${build}/${ant.project.name}-test-${project.version}.jar"/>
+            <fileset dir="${build}">
+                <include name="*.jar"/>
+                <include name="javadoc/**"/>
+            </fileset>
+            <fileset dir="${basedir}" includes="src/**"/>
+        </zip>
+    </target>
+
+    <target name="dist-tablelayout" depends="build">
+        <mkdir dir="${dist}"/>
+        <jar destfile="${dist}/xito-tablelayout-${project.version}.jar">
+            <fileset dir="${classes}">
+                <include name="org/xito/org.dialog/TableLayout.class"/>
+                <include name="org/xito/org.dialog/LayoutParser.class"/>
+            </fileset>
+        </jar>
+   </target>
+    
+</project>

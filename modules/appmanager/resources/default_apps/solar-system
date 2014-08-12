@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applet-action name="Solar System" title="Solar System"
+    id="solar-system"
+    address="http://janus.astro.umd.edu/javadir/orbits/ssv.html"
+    use-browser="false" separate-vm="true" custom-config="false"/>

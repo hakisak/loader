@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applet-action name="Calendar" title="" id="calendar"
+    address="http://my.execpc.com/~mikeber/calendar.html"
+    use-browser="false" separate-vm="false" custom-config="false">
+    <applet name="Calendar" alt="" code="Calendar"
+        codebase="http://my.execpc.com/~mikeber/" archive="" width="421" height="481"/>
+</applet-action>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="xito-bootstrap" basedir=".">
+    <property name="project.version" value="1.3"/>
+    <property name="test.main.class" value="test.Main"/>
+    <property name="src" location="${basedir}/src/main/java"/>
+    <import file="../../build-include.xml"/>
+
+    <path id="classpath">
+        <pathelement location="../org.xito/build/xito-org.xito-dev.jar"/>
+        <pathelement location="../reflect/build/classes"/>
+    </path>
+    
+    <target name="build-dependancies">
+        <ant antfile="../org.xito/build.xml" target="jar" inheritall="false"/>
+        <ant antfile="../reflect/build.xml" target="jar" inheritall="false"/>
+    </target>
+    
+    <!-- ****************************************************************
+    Tests Bootstrap
+    ********************************************************************* -->
+    <target name="test" depends="build-test">
+                        
+        <!-- launch bootstrap -->
+        <java jar="${build}/test/boot.jar" fork="true">
+            <arg value="-bootdir"/>
+            <arg value="${build}/test"/>
+        </java>
+        
+        <!-- clean app directory -->
+        <delete dir="${user.home}/.bootstrap_test"/>
+        
+    </target>
+    
+    <!-- ****************************************************************
+    Build the Tests 
+    ********************************************************************* -->
+    <target name="build-test" depends="jar">
+        
+        <property name="test.dir" value="${build}/test"/>
+        <copy todir="${test.dir}">
+            <fileset dir="boot_samples/test"/>
+        </copy>
+        <copy file="${build}/${ant.project.name}-${project.version}.jar" tofile="${test.dir}/boot.jar"/>
+        
+        <!-- jar test jars -->
+        <!-- Service 1 -->
+        <jar destfile="${test.dir}/boot/service1.jar">
+            <fileset dir="${classes}">
+                <include name="test/Service1*"/>
+            </fileset>
+        </jar>
+        <signjar jar="${test.dir}/boot/service1.jar" keystore="../../xito.keystore" alias="xito" storepass="keypass"/>
+        
+        <!-- Service 2 -->
+        <jar destfile="${test.dir}/service2.jar">
+            <fileset dir="${classes}">
+                <include name="test/Service2*"/>
+            </fileset>
+        </jar>
+        
+        <!-- Service 3 -->
+        <jar destfile="${test.dir}/service3.jar">
+            <fileset dir="${classes}">
+                <include name="test/Service3*"/>
+            </fileset>
+        </jar>
+        
+        <!-- app starter -->
+        <jar destfile="${test.dir}/appstarter.jar">
+            <fileset dir="${classes}">
+                <include name="test/AppStarterService*"/>
+            </fileset>
+        </jar>
+        
+        <!-- Service 4 -->
+        <jar destfile="${test.dir}/startup/service4.jar">
+            <fileset dir="${classes}">
+                <include name="test/Service4*"/>
+            </fileset>
+        </jar>
+        
+        <!-- Service 5 -->
+        <jar destfile="${test.dir}/startup/service5.jar">
+            <fileset dir="${classes}">
+                <include name="test/Service5*"/>
+            </fileset>
+        </jar>
+        
+        <!-- Service 6 -->
+        <jar destfile="${test.dir}/startup/service6.jar">
+            <fileset dir="${classes}">
+                <include name="test/Service6*"/>
+            </fileset>
+        </jar>
+        
+        <!-- Service 7 -->
+        <jar destfile="${test.dir}/startup/service7.jar">
+            <fileset dir="${classes}">
+                <include name="test/Service7*"/>
+            </fileset>
+        </jar>
+        
+        <!-- Shutdown -->
+        <jar destfile="${test.dir}/startup/shutdown.jar">
+            <fileset dir="${classes}">
+                <include name="test/ShutdownService*"/>
+            </fileset>
+        </jar>
+        
+    </target>
+
+<!-- ****************************************************************
+    Build the Jar
+    ********************************************************************* -->
+    <target name="jar" depends="build">
+        <jar destfile="${build}/${ant.project.name}-${project.version}.jar">
+            <manifest>
+                <attribute name="Built-By" value="Xito.org"/>
+                <attribute name="Main-Class" value="org.xito.boot.Boot"/>
+                <section name="common">
+                    <attribute name="Specification-Title" value=""/>
+                    <attribute name="Specification-Version" value="${project.version}"/>
+                    <attribute name="Specification-Vendor" value="xito"/>
+                    <attribute name="Implementation-Title" value=""/>
+                    <attribute name="Implementation-Version" value="${project.version}"/>
+                    <attribute name="Implementation-Vendor" value="xito"/>
+                </section>
+            </manifest>
+
+            <fileset dir="${classes}">
+                <include name="org/xito/boot/**"/>
+            </fileset>
+            <fileset dir="../org.xito/build/classes">
+                <include name="org/xito/**"/>
+            </fileset>
+            <fileset dir="../miglayout/build/classes">
+                <include name="org/xito/miglayout/**"/>
+            </fileset>
+            <fileset dir="../reflect/build/classes">
+                <include name="org/xito/reflect/**"/>
+            </fileset>
+        </jar>  
+        <!-- copy the jar for dev purposes -->
+        <copy file="${build}/${ant.project.name}-${project.version}.jar" tofile="${build}/${ant.project.name}-dev.jar"/>
+    </target>
+
+    <!-- Create Distribution -->
+    <target name="dist" depends="jar">
+
+       <delete dir="dist_temp"/>
+       <mkdir dir="dist_temp"/>
+       <mkdir dir="${dist}"/>
+
+       <!-- Create Sample App Jar -->
+       <jar destfile="${build}/sample.jar">
+           <fileset dir="${classes}">
+               <include name="test/sample/**"/>
+           </fileset>
+       </jar>
+
+       <copy todir="dist_temp">
+           <fileset dir="${build}">
+               <include name="*.jar"/>
+           </fileset>
+           <fileset dir="docs">
+               <include name="*.pdf"/>
+           </fileset>
+           <fileset dir="boot_samples/sample">
+               <include name="*.*"/>
+           </fileset>
+       </copy>
+
+       <!-- rename bootstrap -->
+       <move file="dist_temp/${ant.project.name}-${project.version}.jar" tofile="dist_temp/boot.jar"/>
+
+       <!-- Create zip archive of dist -->
+       <zip destfile="${dist}/${ant.project.name}-${project.version}.zip">
+           <fileset dir="dist_temp"/>
+       </zip>
+
+       <delete dir="dist_temp"/>
+    </target>
+
+    <!-- Create src Distribution -->
+    <target name="dist_src" depends="javadoc" description="Creates SRC Distribution">
+
+       <delete dir="dist_temp"/>
+       <mkdir dir="dist_temp"/>
+       <mkdir dir="${dist}"/>
+
+      
+    </target>
+    
+</project>

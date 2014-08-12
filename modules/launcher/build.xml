@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="xito-launcher" basedir=".">
+    <property name="project.version" value="0.9.0"/>
+    <import file="../../build-service-include.xml"/>
+
+    <!-- Classpath that this module needs to build -->
+    <path id="classpath">
+        <pathelement location="../bootstrap/build/xito-bootstrap-dev.jar"/>
+        <pathelement location="../prefs/build/classes"/>
+        <pathelement location="../dazzle/build/classes"/>
+        <pathelement location="../xmldocs/build/classes"/>
+        <pathelement location="../xmldocs/lib/jdom-1.1.1.jar"/>
+        <pathelement location="../jdic/lib/jdic.jar"/>
+        <pathelement location="lib/tidy.jar"/>
+        <pathelement location="lib/jnlp.jar"/>
+    </path>
+
+    <fileset id="jar.fileset" dir="${classes}">
+        <include name="org/xito/launcher/**"/>
+    </fileset>
+
+    <!-- Build Dependancies use to build modules that this module
+         is dependant on -->
+    <target name="build-dependancies">
+    	<ant antfile="../xmldocs/build.xml" target="build_service" inheritall="false"/>
+        <ant antfile="../prefs/build.xml" target="build_service" inheritall="false"/>
+        <ant antfile="../jdic/build.xml" target="build_service" inheritall="false"/>
+    </target>
+    
+    <!-- overridden from build-service-include to also copy jdic -->
+    <target name="copy_service">
+    	<copy todir="${copy.services.to}/${ant.project.name}">
+            <fileset dir="${build}/${ant.project.name}"/>
+        </copy>
+        
+    	  <ant antfile="../dazzle/build.xml" target="copy_service" inheritAll="false">
+        	<property name="copy.services.to" value="${copy.services.to}"/>
+        </ant>
+    	
+        <ant antfile="../prefs/build.xml" target="copy_service" inheritAll="false">
+        	<property name="copy.services.to" value="${copy.services.to}"/>
+        </ant>
+
+        <ant antfile="../jdic/build.xml" target="copy_service" inheritAll="false">
+        	<property name="copy.services.to" value="${copy.services.to}"/>
+        </ant>
+
+        <ant antfile="../xmldocs/build.xml" target="copy_service" inheritAll="false">
+        	<property name="copy.services.to" value="${copy.services.to}"/>
+        </ant>
+        
+    </target>
+
+    <!-- these tasks run after building the build_test_boot_dir -->
+    <target name="post_build_test_boot_dir">
+        <jar file="${build}/test_boot_dir/${ant.project.name}-test.jar">
+            <fileset dir="${classes}">
+                <include name="test/**"/>
+            </fileset>
+        </jar>
+
+        <!-- copy services we need -->
+        <antcall target="copy_service">
+        	<param name="copy.services.to" value="${build}"/>
+        </antcall>
+
+    </target>
+
+</project>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp-action name="DragnSplash" title="Drag n' Splash"
+    id="dragnsplash"
+    address="http://www.progx.org/users/Gfx/apps/DragnSplashDemo.jnlp"
+    use-webstart="false" separate-vm="false"/>

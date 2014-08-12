@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="xito-module" basedir=".">
+    <property name="test.main.class" value="test.Main"/>
+    <property name="project.version" value="0.9.0"/>
+    <import file="../../build-include.xml"/>
+
+    <!-- Classpath that this module needs to build -->
+    <!--
+    <path id="classpath">
+        <pathelement location="../module-name/build/classes"/>
+        <pathelement location="../../lib/name/name.jar"/>
+    </path>
+    -->
+
+    <!-- Build Dependancies use to build modules that this module
+         is dependant on -->
+    <!--
+    <target name="build-dependancies">
+        <ant antfile="../module-name/build.xml" target="build" inheritall="false"/>
+    </target>
+    -->
+
+</project>

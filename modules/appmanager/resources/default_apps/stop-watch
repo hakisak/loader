@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<applet-action name="Stop Watch" title="" id="stop-watch"
+    address="http://www.palserv.com/jsw.html" use-browser="false"
+    separate-vm="false" custom-config="false">
+    <applet name="Stop Watch" alt="" code="Stopwatch"
+        codebase="http://students.cs.byu.edu/~butler/" archive=""
+        width="300" height="50"/>
+</applet-action>

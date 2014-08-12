@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>org.xito.controlpanel</name>
+   <display-name>Control Panel</display-name>
+   <desc></desc>
+   <version>@project.version@</version>
+   <service-cls>org.xito.controlpanel.ControlPanelService</service-cls>
+   <classpath>
+      <lib path="xito-controlpanel-@project.version@.jar"/>
+   </classpath>
+</service>

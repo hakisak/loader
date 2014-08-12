@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>org.xito.blx.viewer</name>
+   <display-name>BLX Viewer</display-name>
+   <desc></desc>
+   <version>1.0.0</version>
+   <service-cls>org.xito.blx.viewer.BLXViewer</service-cls>
+   <include-classpath>true</include-classpath>
+   <append-to-classpath>false</append-to-classpath>
+</service>

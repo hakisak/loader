@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="loader-applet" basedir=".">
+    <property name="test.main.class" value="org.xito.loaderapplet.LoaderApplet"/>
+    <property name="test.args" value="1.6.1 1.5"/>
+    <property name="project.version" value="0.9.0"/>
+    <property name="jar.name" value="loader_applet.jar"/>
+    <property name="source.level" value="1.1"/>
+    <property name="target.level" value="1.1"/>
+
+    <import file="../../build-include.xml"/>
+
+    <!-- Classpath that this module needs to build -->
+    <!--
+    <path id="classpath">
+        <pathelement location="../module-name/build/classes"/>
+        <pathelement location="../../lib/name/name.jar"/>
+    </path>
+    -->
+
+    <!-- Build Dependancies use to build modules that this module
+         is dependant on -->
+    <!--
+    <target name="build-dependancies">
+        <ant antfile="../module-name/build.xml" target="build" inheritall="false"/>
+    </target>
+    -->
+
+</project>

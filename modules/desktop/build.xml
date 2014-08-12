@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="xito-desktop" basedir=".">
+    <property name="test.main.class" value="test.Main"/>
+    <property name="project.version" value="1.0.4"/>
+    <import file="../../build-service-include.xml"/>
+
+    <!-- Classpath that this module needs to build -->
+    <path id="classpath">
+        <pathelement location="../bootstrap/build/classes"/>
+        <pathelement location="../org.xito/build/classes"/>
+        <pathelement location="../reflect/build/classes"/>
+        <pathelement location="../prefs/build/classes"/>
+        <pathelement location="../launcher/build/classes"/>
+        <pathelement location="../xmldocs/build/classes"/>
+        <pathelement location="../about/build/classes"/>
+        <pathelement location="../dazzle/build/classes"/>
+        <pathelement location="../controlpanel/build/classes"/>
+        <pathelement location="../dcf/build/classes"/>
+        <pathelement location="../blx/build/classes"/>
+    </path>
+
+    <!-- Build Dependancies use to build modules that this module
+         is dependant on -->
+    <target name="build-dependancies">
+        <ant antfile="../bootstrap/build.xml" target="jar" inheritall="false"/>
+        <ant antfile="../splashscreen/build.xml" target="build_service" inheritall="false"/>
+        <ant antfile="../about/build.xml" target="build_service" inheritall="false"/>
+        <ant antfile="../controlpanel/build.xml" target="build_service" inheritall="false"/>
+        <ant antfile="../dcf/build.xml" target="build_service" inheritall="false"/>
+    </target>
+
+    <!-- these tasks run after building the build_test_boot_dir -->
+    <target name="build_all" depends="build_service">
+
+        <!-- delete classes dir -->
+        <delete dir="${classes}"/>
+
+        <!-- copy xito bootstrap -->
+        <copy tofile="${build}/boot.jar">
+            <fileset dir="../bootstrap/build">
+                <include name="xito-bootstrap-dev.jar"/>
+            </fileset>
+        </copy>
+
+        <!-- copy resources -->
+        <copy todir="${build}">
+            <fileset dir="resources">
+                <include name="*.*"/>
+            </fileset>
+        </copy>
+
+        <!-- copy services we need -->
+        <ant antfile="../splashscreen/build.xml" target="copy_service" inheritAll="false">
+        	<property name="copy.services.to" value="${build}"/>
+        </ant>
+        
+        <ant antfile="../about/build.xml" target="copy_service" inheritAll="false">
+        	<property name="copy.services.to" value="${build}"/>
+        </ant>
+        
+        <ant antfile="../dcf/build.xml" target="copy_service" inheritAll="false">
+        	<property name="copy.services.to" value="${build}"/>
+        </ant>
+        
+        <ant antfile="../controlpanel/build.xml" target="copy_service" inheritAll="false">
+        	<property name="copy.services.to" value="${build}"/>
+        </ant>
+       
+        <!-- sign all Jars files -->
+        <signjar keystore="../../xito.keystore" alias="${keystore.alias}" storepass="${keystore.pass}">
+            <path>
+                <fileset dir="build" includes="**/*.jar" />
+            </path>
+        </signjar>
+
+    </target>
+
+    <!-- override of test-->
+    <target name="test" depends="build_all">
+        <java classname="org.xito.boot.Boot" failonerror="true" fork="true">
+            <arg value="-bootdir"/>
+            <arg value="${build}"/>
+            <classpath>
+                <pathelement location="${build}/boot.jar"/>
+            </classpath>
+        </java>
+    </target>
+
+    <!-- Create Distribution of App Manager -->
+    <target name="dist" description="Creates Distribution" depends="build_all">
+        <delete dir="dist_temp"/>
+        <mkdir dir="dist_temp"/>
+        <mkdir dir="dist"/>
+
+        <!-- build win32 -->
+        <!-- <ant dir="../bootstrap" target="win32_launcher"/>   -->
+        <copy todir="dist_temp">
+            <fileset dir="${build}" includes="**/*.*" excludes="win32/*.*"/>
+        </copy>
+
+        <!-- Create zip archive of dist -->
+        <zip destfile="dist/${ant.project.name}-${project.version}-full.zip">
+            <fileset dir="dist_temp">
+                <exclude name="network_deploy_dev/**"/>
+                <exclude name="*.exe"/>
+            </fileset>
+        </zip>
+
+        <!-- Create zip archive of win32 dist -->
+        <copy file="../bootstrap/resources/launch4j/win32/bootstrap.exe" tofile="dist_temp/appmanager.exe"/>
+        <copy file="../bootstrap/resources/launch4j/win32/bootstrap_console.exe" tofile="dist_temp/appmanager_console.exe"/>
+        <zip destfile="dist/${ant.project.name}-${project.version}-full-win32.zip">
+            <fileset dir="dist_temp">
+                <exclude name="network_deploy_dev/**"/>
+            </fileset>
+        </zip>
+
+        <!-- Copy Network Deploy files over regular files -->
+        <copy todir="dist_temp" overwrite="true">
+            <fileset dir="resources/network_deploy_dev">
+                <include name="*.*"/>
+            </fileset>
+        </copy>
+
+        <!-- Create zip of server deployed dist -->
+        <zip destfile="dist/${ant.project.name}-${project.version}-server.zip">
+            <fileset dir="dist_temp">
+                <exclude name="network_deploy_dev/**"/>
+                <exclude name="*.exe"/>
+            </fileset>
+        </zip>
+
+        <!-- Create zip of client dist -->
+        <zip destfile="dist/${ant.project.name}-${project.version}-client.zip">
+            <fileset dir="dist_temp">
+                <include name="boot.jar"/>
+                <include name="boot.properties"/>
+                <include name="xito_16.png"/>
+            </fileset>
+        </zip>
+
+        <!-- create src zip -->
+        <!-- <antcall target="dist_src"/> -->
+
+        <delete dir="dist_temp"/>
+    </target>
+
+    <!-- Create SRC Distribution -->
+    <target name="dist_src" description="Creates SRC Distribution">
+
+       <mkdir dir="dist"/>
+       <property name="build_name" value="${ant.project.name}-${project.version}"/>
+
+       <!-- Create zip archive of src -->
+       <zip destfile="dist/${ant.project.name}-${project.version}-src.zip">
+           <zipfileset dir="../../">
+             <exclude name="**/build/**"/>
+             <exclude name="**/dist/**"/>
+             <exclude name="nbproject/**"/>
+             <exclude name="website/**"/>
+           </zipfileset>
+       </zip>
+    </target>
+
+</project>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>org.xito.appmanager</name>
+   <display-name>Xito Application Manager</display-name>
+   <desc>Service provides Application Manager</desc>
+   <version>@project.version@</version>
+   <service-cls>org.xito.appmanager.Main</service-cls>
+   <classpath>
+      <service-ref name="org.xito.dazzle" href="../xito-dazzle/xito-dazzle.srv"/>
+      <service-ref name="org.xito.xmldocs" href="../xito-xmldocs/xito-xmldocs.srv"/>
+      <service-ref name="org.xito.launcher" href="../xito-launcher/xito-launcher.srv"/>
+      <service-ref name="org.xito.controlpanel" href="../xito-controlpanel/xito-controlpanel.srv"/>
+      <service-ref name="org.xito.about" href="../xito-about/xito-about.srv"/>
+      <lib path="xito-appmanager-@project.version@.jar"/>
+   </classpath>
+</service>

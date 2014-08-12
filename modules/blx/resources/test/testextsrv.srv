@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>test.srvext.testextsrv</name>
+   <display-name>Test Extension Service</display-name>
+   <desc></desc>
+   <version>1.0.0</version>
+   <append-to-classpath>false</append-to-classpath>
+   <classpath>
+      <service-ref name="org.xito.blx" href="../xito-blx/xito-blx.srv"/> 
+      <lib path="testsrvext.jar"/>
+   </classpath>
+</service>

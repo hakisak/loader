@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp-action name="Forms Demo" title="" id="forms_demo"
+    address="http://www.jgoodies.com/download/demos/forms/formsdemo.jnlp"
+    use-webstart="false" separate-vm="false"/>

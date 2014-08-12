@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<group id="games" name="Games">
+    <item id="minesweeper" type="app"/>
+    <item id="asteroids" type="app"/>
+    <item id="freecell" type="app"/>
+    <item id="tailgunner" type="app"/>
+    <item id="rubiks_cube" type="app"/>
+    <item id="mario_bros" type="app"/>
+    <item id="mario_bros3" type="app"/>
+    <item id="real_space_2" type="app"/>
+    <item id="jaxito_roids" type="app"/>
+    <item id="democrat_roids" type="app"/>
+    <item id="republican_roids" type="app"/>
+</group>

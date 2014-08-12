@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service>
+   <name>test.shutdown</name>
+   <display-name>Shutdown Service</display-name>
+   <desc>Shuts down environment</desc>
+   <version>1.0.0</version>
+   <service-cls>test.ShutdownService</service-cls>
+   <classpath>
+      <lib path="shutdown.jar"/>
+   </classpath>
+</service>
