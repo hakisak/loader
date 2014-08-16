@@ -18,11 +18,19 @@
     <orderEntry type="module" module-name="reflect" />
     <orderEntry type="module" module-name="miglayout" />
     <orderEntry type="library" name="Maven: net.sf.jtidy:jtidy:r938" level="project" />
-    <orderEntry type="library" name="Maven: javax:jnlp:1.0.0" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: javax:jnlp:1.0.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../launcher/lib/jnlp.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.jdom:jdom:1.1" level="project" />
     <orderEntry type="module" module-name="xmldocs" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
-    <orderEntry type="module" module-name="bootstrap" scope="TEST" />
+    <orderEntry type="module" module-name="bootstrap" scope="TEST" production-on-test="" />
   </component>
 </module>
 

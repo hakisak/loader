@@ -14,11 +14,21 @@
     <orderEntry type="module" module-name="dcf" />
     <orderEntry type="module" module-name="blx" />
     <orderEntry type="module" module-name="launcher" />
-    <orderEntry type="module" module-name="xmldocs" />
     <orderEntry type="module" module-name="bootstrap" />
     <orderEntry type="module" module-name="reflect" />
     <orderEntry type="module" module-name="miglayout" />
+    <orderEntry type="library" name="Maven: net.sf.jtidy:jtidy:r938" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: javax:jnlp:1.0.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../launcher/lib/jnlp.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.jdom:jdom:1.1" level="project" />
+    <orderEntry type="module" module-name="xmldocs" />
     <orderEntry type="module" module-name="about" />
     <orderEntry type="module" module-name="splashscreen" />
   </component>

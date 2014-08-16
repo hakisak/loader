@@ -3,7 +3,7 @@ package org.xito.dazzle.widget.laf.toolbar;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import javax.media.jai.operator.AddDescriptor;
+//import javax.media.jai.operator.AddDescriptor;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 import javax.swing.UIDefaults;

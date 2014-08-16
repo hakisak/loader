@@ -873,6 +873,8 @@ public class CacheClassLoader extends SecureClassLoader {
     */
    public synchronized void destroy() {
 
+      logger.info("Destroying classloader for:" + toString());
+
       //Close all ClassPath Entries
       Iterator it = classPath.iterator();
       while (it.hasNext()) {

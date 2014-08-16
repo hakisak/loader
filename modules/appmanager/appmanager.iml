@@ -11,8 +11,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="dazzle" />
     <orderEntry type="module" module-name="dialog" />
-    <orderEntry type="library" name="Maven: org.xito:dcf:2.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: org.xito:blx:2.0-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="dcf" />
+    <orderEntry type="module" module-name="blx" />
     <orderEntry type="module" module-name="launcher" />
     <orderEntry type="module" module-name="bootstrap" />
     <orderEntry type="module" module-name="reflect" />
