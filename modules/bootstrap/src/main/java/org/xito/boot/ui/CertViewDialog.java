@@ -64,7 +64,7 @@ public class CertViewDialog extends CustomDialog {
       //descriptor.setWidth(500);
       //descriptor.setHeight(500);
       //descriptor.setResizable(true);
-      descriptor.setIcon(new ImageIcon(this.getClass().getResource("org.xito.launcher.images/encrypted32.png")));
+      //descriptor.setIcon(new ImageIcon(this.getClass().getResource("/org/xito/launcher.images/encrypted32.png")));
       
       super.init();
    }

@@ -309,55 +309,7 @@ public class MainPanel extends JPanel {
       }
        */
       
-      //Solar System Viewer
-      try {
-         AppletDesc appletDesc = new AppletDesc();
-         appletDesc.setSeperateVM(true);
-         appletDesc.setName("SolarSystem");
-         appletDesc.setTitle("Solar System Viewer Applet");
-         appletDesc.setDocumentURL(new URL("http://janus.astro.umd.edu/javadir/orbits/ssv.html"));
-         items.add(new AppletAction(appletFactory, appletDesc));
-      }
-      catch(MalformedURLException badURL) {
-         badURL.printStackTrace();
-      }
-      
-      //Moon Orbits
-      try {
-         AppletDesc appletDesc = new AppletDesc();
-         appletDesc.setSeperateVM(true);
-         appletDesc.setName("moons");
-         appletDesc.setTitle("Moon Orbits Applet");
-         appletDesc.setDocumentURL(new URL("http://janus.astro.umd.edu/javadir/orbits/moons.html"));
-         items.add(new AppletAction(appletFactory, appletDesc));
-      }
-      catch(MalformedURLException badURL) {
-         badURL.printStackTrace();
-      }
-            
-      //Power of Ten Applet
-      try {
-         AppletDesc appletDesc = new AppletDesc();
-         appletDesc.setName("poften1");
-         appletDesc.setTitle("Power of Ten Applet");
-         appletDesc.setDocumentURL(new URL("http://micro.magnet.fsu.edu/primer/java/scienceopticsu/powersof10/index.html"));
-         items.add(new AppletAction(appletFactory, appletDesc));
-      }
-      catch(MalformedURLException badURL) {
-         badURL.printStackTrace();
-      }
-      
-      //Caffeine Molecule Viewer
-      try {
-         AppletDesc appletDesc = new AppletDesc();
-         appletDesc.setName("moleviewer");
-         appletDesc.setTitle("Caffeine Molecular Viewer");
-         appletDesc.setDocumentURL(new URL("http://jmol.sourceforge.net/demo/jssample0/"));
-         items.add(new AppletAction(appletFactory, appletDesc));
-      }
-      catch(MalformedURLException badURL) {
-         badURL.printStackTrace();
-      }
+
       
       //Local Calc App
       LocalAppDesc appDesc = new LocalAppDesc();

@@ -7,14 +7,12 @@
    <version>${project.version}</version>
    <service-cls>org.xito.launcher.LauncherService</service-cls>
    <classpath>
-      <service-ref name="org.xito.xmldocs" href="../xmldocs/xmldocs.srv"/>
-      <service-ref name="org.xito.dazzle" href="../dazzle/dazzle.srv"/>
-      <service-ref name="org.xito.prefs" href="../prefs/prefs.srv"/>
-      <service-ref name="org.jdesktop.jdic" href="../jdic/jdic.srv"/>
-      <lib path="${project.build.finalName}.jar"/>
-      <lib path="tidy.jar"/>
-      <lib path="jnlp.jar"/>
-      <!-- <lib path="/Library/Java/JavaVirtualMachines/jdk1.7.0_07.jdk/Contents/Home/jre/lib/plugin.jar"/> -->
-      <!-- <lib path="plugin.jar"/> -->
+      <service-ref name="org.xito.xmldocs" href="../../../xmldocs/resources/xmldocs/xmldocs.srv"/>
+      <service-ref name="org.xito.dazzle" href="../../../dazzle/resources/dazzle/dazzle.srv"/>
+      <service-ref name="org.xito.prefs" href="../../../prefs/resources/prefs/prefs.srv"/>
+      <lib path="../../build/libs/launcher.jar"/>
+      <lib path="../../build/libs/jdom-1.1.jar"/>
+      <lib path="../../build/libs/jtidy-r938.jar"/>
+      <lib path="../../build/libs/jnlp.jar"/>
    </classpath>
 </service>

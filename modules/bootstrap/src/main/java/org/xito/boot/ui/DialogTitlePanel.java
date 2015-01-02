@@ -24,8 +24,14 @@ public class DialogTitlePanel extends JComponent {
         titleLbl.setHorizontalAlignment(SwingConstants.CENTER);
         add(titleLbl);
 
-        ImageIcon icon = new ImageIcon(iconURL);
-        iconLbl = new JLabel(icon);
+        if(iconURL != null) {
+            ImageIcon icon = new ImageIcon(iconURL);
+            iconLbl = new JLabel(icon);
+        }
+        else {
+            iconLbl = new JLabel();
+        }
+
         iconLbl.setBorder(new EmptyBorder(8,8,8,8));
         add(iconLbl, BorderLayout.EAST);
 

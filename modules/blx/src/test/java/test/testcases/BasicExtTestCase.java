@@ -11,17 +11,13 @@ import java.net.*;
 import org.xito.boot.*;
 import org.xito.blx.*;
 
-import junit.framework.*;
+import static junit.framework.TestCase.*;
 
 /**
  *
  * @author Deane
  */
-public class BasicExtTestCase extends TestCase {
-   
-   public BasicExtTestCase(java.lang.String testName) {
-      super(testName);
-   }
+public class BasicExtTestCase {
    
    /**
     * Test to make sure correct Exceptions are thrown for bad BLX Files

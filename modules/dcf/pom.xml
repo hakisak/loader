@@ -12,6 +12,9 @@
 
     <artifactId>dcf</artifactId>
 
+    <properties>
+        <assemblyLocation>${basedir}/../service-assembly.xml</assemblyLocation>
+    </properties>
 
     <dependencies>
         <dependency>

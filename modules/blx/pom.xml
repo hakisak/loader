@@ -12,6 +12,9 @@
 
     <artifactId>blx</artifactId>
 
+    <properties>
+        <assemblyLocation>${basedir}/../service-assembly.xml</assemblyLocation>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -29,7 +32,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <version>4.6</version>
             <scope>test</scope>
         </dependency>
 

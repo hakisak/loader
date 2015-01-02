@@ -51,16 +51,16 @@ public class DCTile extends DCComponent implements Cloneable, Serializable {
    
    /**
     */
-   public final static String DEFAULT_BKG = "org/xito/launcher/images/tile_background.gif";
+   public final static String DEFAULT_BKG = "/org/xito/dcf/images/tile_background.gif";
    
    /**
     */
-   public final static String DEFAULT_ICON = "org/xito/launcher/images/globe_32x32.png";
+   public final static String DEFAULT_ICON = "/org/xito/dcf/images/globe_32x32.png";
    
    /**
     * Resource used to show the Tile is Busy
     */
-   public final static String DEFAULT_BUSY = "org/xito/launcher/images/tile_busy.gif";
+   public final static String DEFAULT_BUSY = "/org/xito/dcf/images/tile_busy.gif";
    
    /**
     */

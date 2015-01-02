@@ -63,7 +63,7 @@ public class DCMenu extends DCComponent implements AWTEventListener, ActionListe
    * Use menu.add(DCMenu.SEPERATOR);
    */
   public static final int SEPERATOR = 8;
-  private static final ImageIcon closeImage = new ImageIcon(DCComponent.class.getResource("/org/xito/launcher/images/close_enabled.gif"));
+  private static final ImageIcon closeImage = new ImageIcon(DCComponent.class.getResource("org/xito/dcf/images/close_enabled.gif"));
   private static int tearOff_height = 7;
   private static int title_height = 22;
   private int popupDirection = -1;

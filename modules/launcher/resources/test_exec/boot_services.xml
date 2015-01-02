@@ -5,7 +5,7 @@
       <name>org.xito.launcher</name>
       <display-name>Launcher</display-name>
       <minimum-srv>true</minimum-srv>
-      <href>launcher/launcher.srv</href>
+      <href>../launcher/launcher.srv</href>
    </service>
    <service>
       <name>test.xito.launcher_test</name>
