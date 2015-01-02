@@ -544,6 +544,9 @@ public class AppletEnvironment implements AppletContext, AppletStub, FullScreenC
       
       private void init() {
          setLayout(null);
+
+         //Full Screen mode for Appets isn't working right
+         /*
          lblFont = new JLabel().getFont().deriveFont(12f);
          optionsMnu = new JPopupMenu();
          fullScreenModeMI = new JMenuItem("Full Screen");
@@ -557,6 +560,7 @@ public class AppletEnvironment implements AppletContext, AppletStub, FullScreenC
             }
             
          });
+         */
          
       }
       

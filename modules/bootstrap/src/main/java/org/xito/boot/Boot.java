@@ -487,7 +487,38 @@ public class Boot {
          logger.warning("Error Storing Offline Status:"+ioExp.getMessage());
       }
    }
-   
+
+    /**
+     * Setup the Dialog used to check online status
+     * @param task
+     * @return
+     */
+   private static ProgressDialog setupOnlineCheckDialog(OnlineTask task, int offlineDialogResult) {
+       //Must not be in Headless mode so show a progress org.xito during the Online Check
+       ProgressDialogDescriptor desc = new ProgressDialogDescriptor();
+       desc.setTitle(Resources.bundle.getString("check.online.xito.title"));
+       desc.setSubtitle(Resources.bundle.getString("check.online.xito.subtitle"));
+       desc.setMessage(Resources.bundle.getString("check.online.xito.description"));
+       boolean previousOffline = getStoredOfflineStatus();
+       String btnText = null;
+       if(previousOffline) {
+           btnText = Resources.bundle.getString("check.online.xito.previous.offline");
+       }
+       else {
+           btnText = Resources.bundle.getString("check.online.xito.previous.online");
+       }
+
+       desc.setButtonTypes(new ButtonType[]{new ButtonType(btnText, offlineDialogResult)});
+       desc.setShowButtonSeparator(true);
+       desc.setWidth(375);
+       desc.setHeight(225);
+       desc.setRunnableTask(task);
+
+       ProgressDialog dialog = new ProgressDialog(null, desc, true);
+
+       return dialog;
+   }
+
    /**
     * Checks to see if the Machine is Online. Shows a org.xito while this is happening
     * so the user can just choose to go into Offline Mode
@@ -508,7 +539,9 @@ public class Boot {
                         
       final OnlineTask task = new OnlineTask(checkURL);
       
-      //If in Headless mode just do the check 
+      //If in Headless mode just do the check
+      logger.info("Checking Online Status by connecting to: " + checkURL);
+      logger.info("Check Online Status URL can be overridden using System Property: " + CHECK_ONLINE_URL_PROP);
       if(Boot.isHeadless()){
          try {
             Thread checkThread = new Thread(task);
@@ -518,34 +551,12 @@ public class Boot {
          catch(Exception exp) {
             logger.log(Level.WARNING, exp.getMessage(), exp);
          }
-         
-         return;
       }
       else {
          SwingUtilities.invokeLater(new Runnable(){
             public void run() {
-               //Must not be in Headless mode so show a progress org.xito during the Online Check
-               ProgressDialogDescriptor desc = new ProgressDialogDescriptor();
-               desc.setTitle(Resources.bundle.getString("check.online.xito.title"));
-               desc.setSubtitle(Resources.bundle.getString("check.online.xito.subtitle"));
-               desc.setMessage(Resources.bundle.getString("check.online.xito.description"));
-               boolean previousOffline = getStoredOfflineStatus();
-               String btnText = null;
-               if(previousOffline) {
-                  btnText = Resources.bundle.getString("check.online.xito.previous.offline");
-               }
-               else {
-                  btnText = Resources.bundle.getString("check.online.xito.previous.online");
-               }
-
                int OFFLINE_MODE = 999;
-               desc.setButtonTypes(new ButtonType[]{new ButtonType(btnText, OFFLINE_MODE)});
-               desc.setShowButtonSeparator(true);
-               desc.setWidth(375);
-               desc.setHeight(225);
-               desc.setRunnableTask(task);
-
-               ProgressDialog dialog = new ProgressDialog(null, desc, true);
+               ProgressDialog dialog = setupOnlineCheckDialog(task, OFFLINE_MODE);
                dialog.setVisible(true);
                if(dialog.getResult() == OFFLINE_MODE) {
                   dialog.cancelRunnableTask();
@@ -553,7 +564,6 @@ public class Boot {
                }
             }
          });
-
       }
          
    }
@@ -570,6 +580,13 @@ public class Boot {
     */
    public static void setOffline(boolean offlineMode) {
       offline = offlineMode;
+
+      if(offline) {
+          logger.info("OFFLINE. Resources will not be downloaded.");
+      }
+      else {
+          logger.info("ONLINE");
+      }
       
       //emit events
       Iterator it = offlineListeners.iterator();
@@ -614,14 +631,14 @@ public class Boot {
                }
                catch(ClassCastException badCast) {
                   //Not using Our security manager can't check for UI
-                  logger.info("Not using BootSecurityManager. Can't check for No UI");
+                  logger.info("Not using BootSecurityManager. Can't check for User Interface");
                }
             }
          }, 30000); //30 seconds
          
       } 
       else {
-         logger.info("Visible User Interface Check Disabled!");
+         logger.info("HEADLESS MODE: Not Checking for Visible User Interface.");
       }
    }
    

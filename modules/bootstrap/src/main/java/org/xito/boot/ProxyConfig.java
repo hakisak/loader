@@ -83,7 +83,7 @@ public class ProxyConfig {
       proxyIsSet = readProperties(System.getProperties());
       if(proxyIsSet) return;
       
-      //Attempt to Read proxy properites for this app
+      //Attempt to Read proxy properties for this app
       try {
          File f = new File(Boot.getUserAppDir(), PROXY_FILENAME);
          String showProxyPrompt = System.getProperty(BOOT_PROXY_PROMPT, "false");
@@ -92,14 +92,14 @@ public class ProxyConfig {
             if(showProxyPrompt == null || showProxyPrompt.equals("true")) {
                showProxyDialog();
             }
-            return;
          }
-         
-         Properties props = new Properties();
-         props.load(new FileInputStream(f));
-         readProperties(props);
-         if(useProxy()) {
-            storeProperties(System.getProperties());
+         else if(f.exists()) {
+             Properties props = new Properties();
+             props.load(new FileInputStream(f));
+             readProperties(props);
+             if(useProxy()) {
+                 storeProperties(System.getProperties());
+             }
          }
       }
       catch(IOException exp) {

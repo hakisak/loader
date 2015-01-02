@@ -15,23 +15,16 @@
 package org.xito.launcher.jnlp;
 
 import java.io.*;
-import java.net.*;
 import java.text.*;
 import java.util.logging.*;
-
-import javax.swing.*;
 
 import org.xito.dialog.*;
 import org.xito.boot.Boot;
 import org.xito.boot.AppDesc;
 import org.xito.boot.AppInstance;
 import org.xito.boot.AppLauncher;
-import org.xito.boot.AppClassLoader;
-import org.xito.boot.CacheManager;
 import org.xito.boot.LaunchException;
-import org.xito.reflect.*;
 import org.xito.launcher.*;
-import org.xito.launcher.sys.*;
 
 /**
  *
@@ -137,38 +130,59 @@ public class JavaLauncher extends AppLauncher {
          this.javaDesc = javaDesc;
          this.setDaemon(true);
       }
-      
+
+       /**
+        * Setup the Progress Dialog announcing the launch
+        * @return
+        */
+      private ProgressDialog setupProgressDialog() {
+
+          //don't use a progress Dialog if headless
+          if(Boot.isHeadless()) {
+              return null;
+          }
+
+          ProgressDialogDescriptor desc = new ProgressDialogDescriptor();
+          desc.setTitle(Resources.javaBundle.getString("launch.title"));
+
+          String subtitle = Resources.javaBundle.getString("launch.subtitle");
+          subtitle = MessageFormat.format(subtitle, javaDesc.getName());
+          desc.setSubtitle(subtitle);
+
+          String msg = Resources.javaBundle.getString("launch.message");
+          msg = MessageFormat.format(msg, javaDesc.getName());
+          desc.setMessage(msg);
+
+          desc.setButtonTypes(new ButtonType[]{new ButtonType("Hide", 99)});
+          desc.setWidth(350);
+          ProgressDialog dialog = new ProgressDialog(null, desc, false);
+          dialog.setVisible(true);
+
+          return dialog;
+      }
+
       /**
        * Launch the Application. Just like any Thread start should be called not run
        */
       public void run() {
          
-         ProgressDialogDescriptor desc = new ProgressDialogDescriptor();
-         desc.setTitle(Resources.javaBundle.getString("launch.title"));
-         
-         String subtitle = Resources.javaBundle.getString("launch.subtitle");
-         subtitle = MessageFormat.format(subtitle, javaDesc.getName());
-         desc.setSubtitle(subtitle);
-         
-         String msg = Resources.javaBundle.getString("launch.message");
-         msg = MessageFormat.format(msg, javaDesc.getName());
-         desc.setMessage(msg);
-         
-         desc.setButtonTypes(new ButtonType[]{new ButtonType("Hide", 99)});
-         desc.setWidth(350);
-         ProgressDialog dialog = new ProgressDialog(null, desc, false);
-         dialog.setVisible(true);
+         ProgressDialog dialog = setupProgressDialog();
          
          try {
             launch(javaDesc);
          }
          catch(LaunchException exp) {
-            dialog.setVisible(false);
-            msg = MessageFormat.format(Resources.javaBundle.getString("launch.error.message"), exp.getMessage()); 
+            if(dialog != null) {
+                dialog.setVisible(false);
+            }
+
+            String msg = MessageFormat.format(Resources.javaBundle.getString("launch.error.message"), exp.getMessage());
             Boot.showError(Resources.javaBundle.getString("launch.error.title"), msg, exp);
          }
          finally {
-            dialog.setVisible(false);
+            if(dialog != null) {
+                dialog.setVisible(false);
+            }
          }
          
       }

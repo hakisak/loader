@@ -255,38 +255,58 @@ public class JNLPLauncher extends AppLauncher {
          this.jnlpDesc = jnlpDesc;
          this.setDaemon(true);
       }
-      
+
+       /**
+        * Setup Progress Dialog
+         * @return
+        */
+      private ProgressDialog setupProgressDialog() {
+
+          if(Boot.isHeadless()) {
+              return null;
+          }
+
+          ProgressDialogDescriptor desc = new ProgressDialogDescriptor();
+          desc.setTitle(Resources.jnlpBundle.getString("launch.title"));
+
+          String subtitle = Resources.jnlpBundle.getString("launch.subtitle");
+          subtitle = MessageFormat.format(subtitle, jnlpDesc.getName());
+          desc.setSubtitle(subtitle);
+
+          String msg = Resources.jnlpBundle.getString("launch.message");
+          msg = MessageFormat.format(msg, jnlpDesc.getName());
+          desc.setMessage(msg);
+
+          desc.setButtonTypes(new ButtonType[]{new ButtonType("Hide", 99)});
+          desc.setWidth(350);
+          ProgressDialog dialog = new ProgressDialog(null, desc, false);
+          dialog.setVisible(true);
+
+          return dialog;
+      }
+
       /**
        * Launch the Application. Just like any Thread start should be called not run
        */
       public void run() {
          
-         ProgressDialogDescriptor desc = new ProgressDialogDescriptor();
-         desc.setTitle(Resources.jnlpBundle.getString("launch.title"));
-         
-         String subtitle = Resources.jnlpBundle.getString("launch.subtitle");
-         subtitle = MessageFormat.format(subtitle, jnlpDesc.getName());
-         desc.setSubtitle(subtitle);
-         
-         String msg = Resources.jnlpBundle.getString("launch.message");
-         msg = MessageFormat.format(msg, jnlpDesc.getName());
-         desc.setMessage(msg);
-         
-         desc.setButtonTypes(new ButtonType[]{new ButtonType("Hide", 99)});
-         desc.setWidth(350);
-         ProgressDialog dialog = new ProgressDialog(null, desc, false);
-         dialog.setVisible(true);
+         ProgressDialog dialog = setupProgressDialog();
          
          try {
             launch(jnlpDesc);
          }
          catch(LaunchException exp) {
-            dialog.setVisible(false);
-            msg = MessageFormat.format(Resources.jnlpBundle.getString("launch.error.message"), exp.getMessage()); 
+            if(dialog != null) {
+                dialog.setVisible(false);
+            }
+
+            String msg = MessageFormat.format(Resources.jnlpBundle.getString("launch.error.message"), exp.getMessage());
             Boot.showError(Resources.jnlpBundle.getString("launch.error.title"), msg, exp);
          }
          finally {
-            dialog.setVisible(false);
+            if(dialog != null) {
+                dialog.setVisible(false);
+            }
          }
          
       }

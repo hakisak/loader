@@ -13,6 +13,6 @@
     </properties>
 
     <modules>
-        <module>modules/parent-pom.xml</module>
+        <module>modules/pom.xml</module>
     </modules>
 </project>
