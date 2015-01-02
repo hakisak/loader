@@ -74,7 +74,7 @@ public interface BLXObject
    * to persist each of its children. 
    * @param allChildren true causes this object to call getDataElement on all its children false means 
    *   only dirty children
-   * @param IBLXStorageHandler child objects can optionally have their state stored in seperate
+   * @param storageHandler child objects can optionally have their state stored in seperate
    *  documents using a Storage handler. 
    * @return the XML Data Element for this Component
    */

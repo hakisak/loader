@@ -91,7 +91,7 @@ public class Reflection {
    * Create a new Object instance for the given Class.
    * @param cls to create an instance of
    * @throws ReflectException if a no parameter constructor is not found
-   * @throws InvovationTargetException if an Exception is thrown by the Constructor
+   * @throws InvocationTargetException if an Exception is thrown by the Constructor
    */
   public Object newInstance(Class cls) throws ReflectException, InvocationTargetException {
     return newInstance(cls, null);
@@ -105,7 +105,7 @@ public class Reflection {
    * method.
    *              
    * @throws ReflectException if a no parameter constructor is not found
-   * @throws InvovationTargetException if an Exception is thrown by the Constructor
+   * @throws InvocationTargetException if an Exception is thrown by the Constructor
    */
   public Object newInstance(Class cls, Object[] args) throws ReflectException, InvocationTargetException {
 
@@ -128,7 +128,7 @@ public class Reflection {
    * @param args arguments to pass to the constructor. 
    * @param types Class types of the parameters to pass. This ensure the correct construtor is called
    * @throws ReflectException if a no parameter constructor is not found
-   * @throws InvovationTargetException if an Exception is thrown by the Constructor
+   * @throws InvocationTargetException if an Exception is thrown by the Constructor
    */
   public Object newInstance(Class cls, Object[] args, Class[] types) throws ReflectException, InvocationTargetException {
     try {

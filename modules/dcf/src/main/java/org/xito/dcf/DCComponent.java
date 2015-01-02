@@ -554,14 +554,14 @@ public class DCComponent extends JPanel implements BLXObject {
    }
    
    /**
-    * Add a window listener to the Main Desktop Frame
+    * Add a stage listener to the Main Desktop Frame
     */
    public static void addDesktopFrameListener(WindowListener listener) {
       desktopFrame.addWindowListener(listener);
    }
    
    /**
-    * Add a window listener to the Main Desktop Frame
+    * Add a stage listener to the Main Desktop Frame
     */
    public static void removeDesktopFrameListener(WindowListener listener) {
       desktopFrame.removeWindowListener(listener);

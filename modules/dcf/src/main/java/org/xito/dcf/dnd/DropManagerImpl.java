@@ -141,7 +141,7 @@ public class DropManagerImpl implements DropManager, AWTEventListener {
         
     currentDragWindow.setLocation(_dragLoc);
     
-    //Hide the window for now
+    //Hide the stage for now
     currentDragWindow.setVisible(false);
         
     //Add Listeners
@@ -273,7 +273,7 @@ public class DropManagerImpl implements DropManager, AWTEventListener {
   
   /**
    * Add a Window that will be checked for targets during Drag Operations
-   * @param pWindow window that will be checked
+   * @param pWindow stage that will be checked
    */
   protected void addWindow(Window pWindow) {
     
@@ -288,7 +288,7 @@ public class DropManagerImpl implements DropManager, AWTEventListener {
   }
   
   /**
-   * Moves the Window to the top of the window list
+   * Moves the Window to the top of the stage list
    * @param pWin
    */
   protected void moveWindowToTop(Window pWin) {
@@ -314,7 +314,7 @@ public class DropManagerImpl implements DropManager, AWTEventListener {
    */
   public DropTarget getDropTarget(Point pLocation) {
     
-    //Convert the point to be relative to the window
+    //Convert the point to be relative to the stage
     Point _point = pLocation.getLocation();
     
     //Go through the registered windows and get its components
@@ -332,15 +332,15 @@ public class DropManagerImpl implements DropManager, AWTEventListener {
       //Window must be Visible
       if(_win.isVisible()==false) continue;
                         
-      //Point must be in visible window area
+      //Point must be in visible stage area
       Dimension _size = _win.getSize();
       Point _loc = _win.getLocation();
       Rectangle _bounds = new Rectangle(_loc, _size);
       
       if(_bounds.contains(_point)==false) continue;
             
-      //At this point we know that the point is contained in the window boundaries
-      //and that the window is Visible
+      //At this point we know that the point is contained in the stage boundaries
+      //and that the stage is Visible
             
       //Get the Component at that location
       SwingUtilities.convertPointFromScreen(_point, _win);
@@ -389,7 +389,7 @@ public class DropManagerImpl implements DropManager, AWTEventListener {
     
     //Window Closed
     if(winEvent.getID() == WindowEvent.WINDOW_CLOSED) {
-      //remove window
+      //remove stage
       removeWindow(winEvent.getWindow());
     }    
     //Window Activated move to Top of List

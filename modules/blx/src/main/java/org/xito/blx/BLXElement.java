@@ -183,7 +183,7 @@ public class BLXElement {
    
    /**
     * Set the ClassName for the BLXObject
-    * @param class name for the BLX Object
+    * @param clsName name for the BLX Object
     */
    public void setClassName(String clsName) {
       className = clsName;
@@ -534,8 +534,6 @@ public class BLXElement {
    
    /**
     * Get Data from a seperate Document
-    * @param pBLXNode Element that is BLX Node from a container
-    * @param pURI Absolute uri where the data is contained
     * @return new Element that contains the data from the uri
     */
    protected Element getDataFromURL() {

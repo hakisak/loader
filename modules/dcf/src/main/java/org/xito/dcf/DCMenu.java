@@ -336,7 +336,7 @@ public class DCMenu extends DCComponent implements AWTEventListener, ActionListe
   }
   
   /**
-   * Disposes this Menus Popup window then calls parentMenu.disposeParent
+   * Disposes this Menus Popup stage then calls parentMenu.disposeParent
    */
   protected void disposeParent() {
     if(popupWindow != null) popupWindow.dispose();
@@ -503,12 +503,12 @@ public class DCMenu extends DCComponent implements AWTEventListener, ActionListe
       
       //Get the Components Window and see if it is owned by us
       Window evtWindow = SwingUtilities.getWindowAncestor(compSrc);
-      //Return if the window were the event occured is the PopupWindow
+      //Return if the stage were the event occured is the PopupWindow
       if(evtWindow == popupWindow) return;
       
       Window ownerWindow = evtWindow.getOwner();
       while(ownerWindow != null) {
-        //If the window is Owned by the PopupWindow then Return
+        //If the stage is Owned by the PopupWindow then Return
         if(ownerWindow == popupWindow) return;
         ownerWindow = ownerWindow.getOwner();
       }
