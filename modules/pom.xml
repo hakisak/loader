@@ -1,0 +1,203 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.xito</groupId>
+    <artifactId>module-parent</artifactId>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.xito</groupId>
+        <artifactId>parent</artifactId>
+        <version>2.0-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <assemblyLocation>${basedir}/service-assembly.xml</assemblyLocation>
+    </properties>
+
+    <modules>
+        <module>about</module>
+        <module>appmanager</module>
+        <!-- <module>blx</module> -->
+        <module>bootstrap</module>
+        <module>controlpanel</module>
+        <module>dazzle</module>
+        <!-- <module>dcf</module> -->
+        <!-- <module>desktop</module> -->
+        <module>dialog</module>
+        <module>httpserver</module>
+        <!-- <module>httpservice</module> -->
+        <module>jdic</module>
+        <module>launcher</module>
+        <!-- <module>loaderapplet</module> -->
+        <module>miglayout</module>
+        <module>prefs</module>
+        <module>reflect</module>
+        <module>splashscreen</module>
+        <module>xmldocs</module>
+
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-plugin-resources</id>
+                        <!-- here the phase you need -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/${project.artifactId}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>resources/${project.artifactId}</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                                <resource>
+                                    <directory>${project.build.directory}</directory>
+                                    <includes>
+                                        <include>${project.build.finalName}.jar</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <finalName>${project.name}</finalName>
+                    <descriptors>
+                        <descriptor>${assemblyLocation}</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>service-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+    <profiles>
+
+        <profile>
+            <id>exec_test</id>
+
+            <build>
+                <plugins>
+
+                    <!-- Ruby Script -->
+                    <!--
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.jruby</groupId>
+                                <artifactId>jruby-complete</artifactId>
+                                <version>1.4.0</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>my_script</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <configuration>
+                                    <includePluginDependencies>true</includePluginDependencies>
+                                    <mainClass>org.jruby.Main</mainClass>
+                                    <arguments>
+                                        <argument>${basedir}/src/main/ruby/myscript.rb</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    -->
+                    <!-- Python Script -->
+                    <!--<plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.python</groupId>
+                                <artifactId>jython-standalone</artifactId>
+                                <version>2.5.2</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>my_script</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                                <configuration>
+                                    <includePluginDependencies>true</includePluginDependencies>
+                                    <mainClass>org.python.util.jython</mainClass>
+                                    <arguments>
+                                        <argument>${basedir}/src/main/jython/exec_test_setup.py</argument>
+                                    </arguments>
+                                    <systemProperties>
+                                        <property>
+                                            <key>artifactId</key>
+                                            <value>${project.artifactId}</value>
+                                        </property>
+                                        <property>
+                                            <key>project.version</key>
+                                            <value>${project.version}</value>
+                                        </property>
+                                        <property>
+                                            <key>basedir</key>
+                                            <value>${basedir}</value>
+                                        </property>
+                                    </systemProperties>
+
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>-->
+
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+</project>
