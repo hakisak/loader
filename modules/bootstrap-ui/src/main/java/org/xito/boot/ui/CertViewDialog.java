@@ -53,8 +53,8 @@ public class CertViewDialog extends CustomDialog {
       
       String title = "Certificate Viewer";
       String subtitle = "View the Certificates for this Application";
-      super.descriptor = new DialogDescriptor();
-      super.setTitle(title);
+      descriptor = new DialogDescriptor();
+      setTitle(title);
       descriptor.setTitle(title);
       descriptor.setSubtitle(subtitle);
       descriptor.setCustomPanel(mainPanel);

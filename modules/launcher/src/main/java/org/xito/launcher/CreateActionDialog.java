@@ -51,7 +51,7 @@ public class CreateActionDialog extends CustomDialog {
          this.actionList = new JList(new java.util.Vector(actions));
       }
       
-      super.descriptor = createDialogDesc();
+      descriptor = createDialogDesc();
       super.setModal(true);
       super.setTitle(Resources.bundle.getString("create.action.title"));
       super.init();
@@ -64,8 +64,8 @@ public class CreateActionDialog extends CustomDialog {
       
       DialogDescriptor desc = new DialogDescriptor();
       desc.setType(DialogManager.OK_CANCEL);
-      desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-      desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+      //desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+      //desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
       desc.setTitle(Resources.bundle.getString("create.action.title"));
       desc.setSubtitle(Resources.bundle.getString("create.action.subtitle"));
       desc.setIcon(new ImageIcon(CreateActionDialog.class.getResource("/org/xito/launcher/images/new_app_32.png")));

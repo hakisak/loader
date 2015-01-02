@@ -14,18 +14,13 @@
 
 package org.xito.boot;
 
-import java.awt.*;
 import java.util.*;
 import java.util.logging.*;
-import java.io.Serializable;
 import java.net.*;
 import java.security.*;
 import java.security.cert.*;
 
-import javax.swing.*;
-
 import org.xito.boot.ui.*;
-import org.xito.dialog.*;
 
 /**
  * Policy for Boot environment.  Will determine the permissions that should be granted
@@ -69,11 +64,13 @@ public class BootPolicy extends Policy {
    //ThreadGroup contextGroup;
       
    private BootSecurityManager securityManager;
-   private SimplePermPromptDialog permPromptDialog;
-      
+
+   private PermissionPromptHandler permissionPromptHandler;
+
    protected BootPolicy(BootSecurityManager securityManager) {
  
       try {
+         this.securityManager = securityManager;
          bootStrapSource = this.getClass().getProtectionDomain().getCodeSource();
          bootStrapLoader = this.getClass().getClassLoader();
          bootDirSource = new CodeSource(new URL(Boot.getBootDir().toURI().toString() + "-"), (java.security.cert.Certificate[])null);
@@ -86,11 +83,6 @@ public class BootPolicy extends Policy {
       systemSource = Policy.class.getProtectionDomain().getCodeSource();
       systemPolicy = Policy.getPolicy();
       
-      if (!Boot.isHeadless()) {
-         new JWindow().getOwner();
-         initDialogs();
-      }
-      
       //Get trusted Cert serial number
       trustedCertSerialNum = System.getProperty("trusted.cert.serial");
       
@@ -100,65 +92,20 @@ public class BootPolicy extends Policy {
       
       logger.info("Trusted Cert:"+trustedCertSerialNum);
    }
-   
-   /**
-    * Build initial Permission Prompt Dialogs
-    */
-   private void initDialogs() {
-      
-      permPromptDialog = new SimplePermPromptDialog();
-      //securityDialog = new SecurityPermissionDialog(policyStore, securityManager.securityLogger);
+
+
+   public boolean promptForPermission(String subtitle, String msg, Permission perm, ExecutableDesc execDesc) {
+        return permissionPromptHandler.promptForPermission(policyStore,
+            securityManager.securityLogger,
+            subtitle,
+            msg,
+            perm,
+            execDesc
+            );
    }
-   
-   /**
-    * Prompt the user to grant permission for an action. This can only be called from Trusted code
-    * If this method returns true then the user granted permission and the Trusted code can perform 
-    * an operation on behalf of untrusted code
-    *
-    * @param subtitle for org.xito
-    * @param message for org.xito
-    * @param perm to be granted
-    * @param execDesc of the App requesting the Grant
-    * @param ProtectionDomain of the App requesting the Grant
-    */
-   protected boolean promptForPermission(String subtitle, String msg, Permission perm, ExecutableDesc execDesc) {
-      
-      //The caller must be trusted so display the Permission Prompt
-      permPromptDialog.setTitles(null , subtitle);
-      permPromptDialog.setMessageText(msg);
-      if(EventQueue.isDispatchThread()) {
-         permPromptDialog.setVisible(true);
-      }
-      else {
-         Boot.invokeAndWait(new Runnable() {
-            public void run() {
-               permPromptDialog.setVisible(true);
-            }
-         });
-      }
-      
-      //Store Option
-      int option = permPromptDialog.getSelectedPermOption();
-      boolean granted = (permPromptDialog.getResult() == DialogManager.YES);
-      permPromptDialog.reset();      
-      
-      if(granted && option == ALWAYS_APP) {
-         try {
-            Permissions perms = new Permissions();
-            perms.add(perm);
-            policyStore.storePermissions(execDesc, perms);
-         }
-         catch(PolicyStoreException exp) {
-            String title = Resources.bundle.getString("policy.store.error.title");
-            String error_msg = Resources.bundle.getString("policy.store.error.msg");
-            Boot.showError(title, error_msg, exp);
-         }
-      }
-            
-      return granted;
-   }
-   
-   /**
+
+
+    /**
     * Get Permissions for a CodeSource this is called everytime time a class is resolved.
     * 
     */
@@ -250,63 +197,7 @@ public class BootPolicy extends Policy {
       result.add( new AllPermission() );
       return result;
    }
-   
-   /**
-    * Prompt for the user to grant permission for this action
-    */
-   private synchronized int promptForPermission(final ProtectionDomain domain, final ExecutableDesc execDesc, final Permission permission) {
-      
-      final SecurityPermissionDialog securityDialog = new SecurityPermissionDialog(policyStore, securityManager.securityLogger);
-       
-      //The caller must be trusted to display the Permission Prompt
-      Integer result = (Integer)AccessController.doPrivileged(new PrivilegedAction() {
-         public Object run() {
-            securityDialog.setSecurityInfo(domain, execDesc, permission); 
-            if(EventQueue.isDispatchThread()) {
-               securityDialog.setVisible(true);
-            }
-            else {
-                try {
-                    SwingUtilities.invokeAndWait(new Runnable() {
-                      public void run() {
-                         Toolkit.getDefaultToolkit().beep(); 
-                         securityDialog.setVisible(true);
-                      }
-                   });
-                }
-                catch(Exception exp) {
-                    logger.log(Level.SEVERE, exp.getMessage(), exp);
-                }
-            }
-            
-            return new Integer(securityDialog.getGrantOption());
-         }
-      });
-      
-      return result.intValue();
-            
-      //spawn a Thread under the context group to show org.xito in context of BootStrap
-      /*
-      promptThread = new PromptThread(domain, execDesc, permission);
 
-      promptThread.start();
-      try {
-         promptThread.join();
-      }
-      catch(InterruptedException exp) {
-         logger.log(Level.SEVERE, exp.getMessage(), exp);
-         return DENY_PERMISSION;
-      }
-       
-      
-      if(promptThread.result == DENY_PERMISSION)
-         return DENY_PERMISSION;
-      else {
-         return promptThread.grantOption;
-      }
-       */
-   }
-   
    /**
     * Check for security implications on domain for permission
     */
@@ -393,11 +284,11 @@ public class BootPolicy extends Policy {
       }
       catch(PolicyStoreException storeExp) {
          logger.log(Level.SEVERE, storeExp.getMessage(), storeExp);
-         Boot.showError("Security Manager Error","<html>There was an error trying to store the permission:"+storeExp.getMessage()+"</html>", storeExp);
+         Boot.showError("Security Manager Error", "", "<html>There was an error trying to store the permission:"+storeExp.getMessage()+"</html>", storeExp);
       }
       catch(ClassCastException badCast) {
          logger.log(Level.SEVERE, badCast.getMessage(), badCast);
-          Boot.showError("Security Manager Error","<html>There was an error trying to store the permission. The certificate is not an X509Certificate</html>", badCast);
+          Boot.showError("Security Manager Error", "", "<html>There was an error trying to store the permission. The certificate is not an X509Certificate</html>", badCast);
       }
    }
    
@@ -509,7 +400,12 @@ public class BootPolicy extends Policy {
          //At this point the code wants All Permissions but we don't have them stored
          //So we need to prompt the user
          if(execDesc != null) {
-            int grantOption = promptForPermission(domain, execDesc,  permission);
+            int grantOption = permissionPromptHandler.promptForPermission(
+                    policyStore,
+                    securityManager.securityLogger,
+                    domain,
+                    execDesc,
+                    permission);
             
             if(grantOption == DENY_PERMISSION) { 
                perms = domain.getPermissions();

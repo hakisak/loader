@@ -40,7 +40,7 @@ public class LocalAppConfigDialog extends CustomDialog {
          this.appDesc = appDesc;
       
       
-      super.descriptor = createDialogDesc();
+      descriptor = createDialogDesc();
       super.setModal(true);
       super.setTitle(Resources.sysBundle.getString("config.title"));
       super.init();
@@ -53,8 +53,8 @@ public class LocalAppConfigDialog extends CustomDialog {
       
       DialogDescriptor desc = new DialogDescriptor();
       desc.setType(DialogManager.OK_CANCEL);
-      desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-      desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+      //desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+      //desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
       desc.setTitle(Resources.sysBundle.getString("config.title"));
       desc.setSubtitle(Resources.sysBundle.getString("config.subtitle"));
       desc.setIcon(new ImageIcon(this.getClass().getResource("/org/xito/launcher/images/exec_32.png")));

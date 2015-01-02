@@ -1,15 +1,6 @@
 dependencies {
     compile project(':modules:reflect')
-    compile project(':modules:miglayout')
-    compile project(':modules:dialog')
 }
-
-/*
-jar {
-    manifest {
-        attributes 'Main-Class': 'org.xito.boot.Boot'
-    }
-}*/
 
 //create a single Jar with all dependencies
 jar {
@@ -19,3 +10,4 @@ jar {
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
+

@@ -49,7 +49,7 @@ public class JavaConfigDialog extends CustomDialog {
       else
          this.appDesc = appDesc;
             
-      super.descriptor = createDialogDesc();
+      descriptor = createDialogDesc();
       super.setModal(true);
       super.setTitle(Resources.javaBundle.getString("config.title"));
       super.init();
@@ -62,8 +62,8 @@ public class JavaConfigDialog extends CustomDialog {
       
       DialogDescriptor desc = new DialogDescriptor();
       desc.setType(DialogManager.OK_CANCEL);
-      desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-      desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+      //desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+      //desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
       desc.setTitle(Resources.javaBundle.getString("config.title"));
       desc.setSubtitle(Resources.javaBundle.getString("config.subtitle"));
       desc.setIcon(new ImageIcon(this.getClass().getResource("/org/xito/launcher/images/java_32.png")));
@@ -434,8 +434,8 @@ public class JavaConfigDialog extends CustomDialog {
          
          DialogDescriptor addArchiveDesc = new DialogDescriptor();
          addArchiveDesc.setType(DialogManager.OK_CANCEL);
-         addArchiveDesc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-         addArchiveDesc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+         //addArchiveDesc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+         //addArchiveDesc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
          addArchiveDesc.setTitle(Resources.javaBundle.getString("config.add.archive.title"));
          addArchiveDesc.setSubtitle(Resources.javaBundle.getString("config.add.archive.subtitle"));
          addArchiveDesc.setWidth(350);

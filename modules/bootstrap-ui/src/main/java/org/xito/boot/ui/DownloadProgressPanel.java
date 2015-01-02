@@ -93,7 +93,7 @@ public class DownloadProgressPanel extends JPanel implements CacheListener {
 
             //Show Error
             String msgText  = MessageFormat.format(Resources.bundle.getString("download.ui.error.msg"), url.toString(), msg);
-            Boot.showError(Resources.bundle.getString("download.ui.error.title"), msgText, exp);
+            Boot.showError(Resources.bundle.getString("download.ui.error.title"), "", msgText, exp);
             itemMap.remove(url);
 
             remove(panel);

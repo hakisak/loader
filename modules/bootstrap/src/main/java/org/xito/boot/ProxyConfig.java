@@ -21,9 +21,6 @@ import java.util.*;
 import java.util.logging.*;
 import javax.swing.*;
 
-import org.xito.dialog.*;
-import org.xito.boot.ui.*;
-
 /**
  * This class maintains Java HTTP and Socks proxy settings. It wraps the standard
  * System properties used by Java to configure proxy settings.
@@ -108,7 +105,7 @@ public class ProxyConfig {
             String title = Resources.bundle.getString("boot.error.title");
             String message = Resources.bundle.getString("proxy.read.error ");
             message = MessageFormat.format(message, exp.getMessage());
-            DialogManager.showError((Frame)null, title, message, DialogManager.ERROR_MSG, exp);
+            Boot.showError(title, null, message, exp);
          }
       }
    }
@@ -230,38 +227,7 @@ public class ProxyConfig {
     */
    public void showProxyDialog() {
       
-      ProxyConfigPanel configPanel = new ProxyConfigPanel(this);
-      DialogDescriptor desc = new DialogDescriptor();
-      
-      //desc.setWidth(375);
-      //desc.setHeight(425);
-      desc.setWindowTitle("Proxy Configuration");
-      desc.setTitle("Proxy Configuration");
-      desc.setSubtitle("Configure a Proxy Server for this application");
-      desc.setCustomPanel(configPanel);
-      desc.setType(DialogManager.OK_CANCEL);
-      desc.setGradiantColor(Defaults.DIALOG_GRAD_COLOR);
-      desc.setGradiantOffsetRatio(Defaults.DIALOG_GRAD_OFFSET);
-      desc.setIcon(new ImageIcon(this.getClass().getResource("ui/org.xito.launcher.images/proxy32.gif")));
-      desc.setPack(true);
-      //desc.setResizable(true);
-      
-      int result = DialogManager.showDialog(desc);
-      
-      //If cancel we don't save the settings meaning they will
-      //be prompted again
-      if(result == DialogManager.CANCEL) {
-         return;
-      }
-      //If Ok then we save and use those settings
-      else if(result == DialogManager.OK) {
-         configPanel.updateConfig();
-         if(useProxy()) {
-            storeProperties(System.getProperties());
-         }
-         
-         storeSettings();
-      }
+      //TODO show proxy dialog
    }
    
    /**
@@ -277,7 +243,10 @@ public class ProxyConfig {
          props.store(out, null);
       }
       catch(IOException ioExp) {
-         Boot.showError(Resources.bundle.getString("proxy.store.error.title"), Resources.bundle.getString("proxy.store.error.msg"), ioExp);
+          String title = Resources.bundle.getString("proxy.store.error.title");
+          String subtitle = Resources.bundle.getString("proxy.store.error.subtitle");
+          String message = Resources.bundle.getString("proxy.store.error.msg");
+         Boot.showError(title, subtitle, message, ioExp);
       }
    }
    
@@ -376,9 +345,7 @@ public class ProxyConfig {
     * Initialize Proxy Settings
     */
    public static synchronized void initialize() {
-      //if we are running under WebStart then it handles Proxy
-      if(Boot.isQuickLaunch()) return;
-      
+
       //If we are already initialized then return
       if(singleton != null) return;
       

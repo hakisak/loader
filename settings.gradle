@@ -1,5 +1,6 @@
 include "modules:dialog",
         "modules:bootstrap",
+        "modules:bootstrap-ui",
         "modules:reflect",
         "modules:miglayout",
         "modules:launcher",

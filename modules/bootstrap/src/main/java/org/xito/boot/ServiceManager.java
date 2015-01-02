@@ -161,11 +161,13 @@ public final class ServiceManager implements Serializable {
             url = new URL(bootURL);
          }
          else {
-            url = new URL(Boot.getBootDir().toURL(), "boot_services.xml");
+            File bootServicesFile = new File(Boot.getBootDir(), "boot_services.xml");
+            if(bootServicesFile.exists()) {
+                url = bootServicesFile.toURI().toURL();
+                logger.log(Level.INFO, "Boot Services URL:"+url.toString());
+            }
          }
-         
-         logger.log(Level.INFO, "Boot Services URL:"+url.toString());
-         
+
          //Start the Boot Services, fail if any don't start
          bootServiceExps = ServiceStarter.startServices(url, true, false);
          
@@ -256,11 +258,13 @@ public final class ServiceManager implements Serializable {
             url = new URL(startupURL);
          }
          else {
-            url = new URL(Boot.getBootDir().toURL(), "start_services.xml");
+             File startupServicesFile = new File(Boot.getBootDir(), "start_services.xml");
+             if(startupServicesFile.exists()) {
+                 url = startupServicesFile.toURI().toURL();
+                 logger.log(Level.INFO, "Start Services URL:"+url.toString());
+             }
          }
-         
-         logger.log(Level.INFO, "Startup Service URL:"+url.toString());
-         
+
          //Start the Startup Services
          startupServiceExps = ServiceStarter.startServices(url, false, true);
          

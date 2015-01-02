@@ -38,7 +38,7 @@ public class YouTubeConfigDialog extends CustomDialog {
       else
          this.youTubeDesc = youTubeDesc;
       
-      super.descriptor = createDialogDesc();
+      descriptor = createDialogDesc();
       super.setModal(true);
       super.setTitle(Resources.youtubeBundle.getString("config.title"));
       super.init();
@@ -51,8 +51,8 @@ public class YouTubeConfigDialog extends CustomDialog {
       
       DialogDescriptor desc = new DialogDescriptor();
       desc.setType(DialogManager.OK_CANCEL);
-      desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-      desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+      //desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+      //desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
       desc.setTitle(Resources.youtubeBundle.getString("config.title"));
       desc.setSubtitle(Resources.youtubeBundle.getString("config.subtitle"));
       desc.setIcon(new ImageIcon(this.getClass().getResource("/org/xito/launcher/images/youtube.png")));

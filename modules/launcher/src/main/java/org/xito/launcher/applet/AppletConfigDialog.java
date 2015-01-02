@@ -53,7 +53,7 @@ public class AppletConfigDialog extends CustomDialog {
       else
          this.appletDesc = appletDesc;
       
-      super.descriptor = createDialogDesc();
+      descriptor = createDialogDesc();
       super.setModal(true);
       super.setTitle(Resources.appletBundle.getString("config.title"));
       super.init();
@@ -66,8 +66,8 @@ public class AppletConfigDialog extends CustomDialog {
       
       DialogDescriptor desc = new DialogDescriptor();
       desc.setType(DialogManager.OK_CANCEL);
-      desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-      desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+      //desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+      //desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
       desc.setTitle(Resources.appletBundle.getString("config.title"));
       desc.setSubtitle(Resources.appletBundle.getString("config.subtitle"));
       desc.setIcon(new ImageIcon(LauncherService.class.getResource("/org/xito/launcher/images/java_32.png")));
@@ -240,8 +240,8 @@ public class AppletConfigDialog extends CustomDialog {
          advancedPanel = new AdvancedPanel();
          advancedDesc = new DialogDescriptor();
          advancedDesc.setType(DialogManager.OK_CANCEL);
-         advancedDesc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-         advancedDesc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+         //advancedDesc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+         //advancedDesc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
          advancedDesc.setTitle(Resources.appletBundle.getString("config.adv.title"));
          advancedDesc.setSubtitle(Resources.appletBundle.getString("config.adv.subtitle"));
          advancedDesc.setIcon(new ImageIcon(this.getClass().getResource("/org/xito/launcher/images/java_32.png")));
@@ -512,8 +512,8 @@ public class AppletConfigDialog extends CustomDialog {
          
          DialogDescriptor addArchiveDesc = new DialogDescriptor();
          addArchiveDesc.setType(DialogManager.OK_CANCEL);
-         addArchiveDesc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-         addArchiveDesc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+         //addArchiveDesc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+         //addArchiveDesc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
          addArchiveDesc.setTitle(Resources.appletBundle.getString("config.adv.add.archive.title"));
          addArchiveDesc.setSubtitle(Resources.appletBundle.getString("config.adv.add.archive.subtitle"));
          addArchiveDesc.setWidth(300);
@@ -623,8 +623,8 @@ public class AppletConfigDialog extends CustomDialog {
          
          DialogDescriptor addParamterDesc = new DialogDescriptor();
          addParamterDesc.setType(DialogManager.OK_CANCEL);
-         addParamterDesc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-         addParamterDesc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+         //addParamterDesc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+         //addParamterDesc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
          addParamterDesc.setTitle(Resources.appletBundle.getString("config.adv.add.parameter.title"));
          addParamterDesc.setSubtitle(Resources.appletBundle.getString("config.adv.add.parameter.subtitle"));
          addParamterDesc.setWidth(300);

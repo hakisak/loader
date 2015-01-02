@@ -42,8 +42,8 @@ public class ControlPanelFrame extends JFrame {
       desc.setTitle(Boot.getAppDisplayName()+": "+Resources.bundle.getString("frame.title"));
       desc.setSubtitle(Resources.bundle.getString("frame.subtitle"));
       desc.setIcon(new ImageIcon(ControlPanelFrame.class.getResource("org.xito.launcher.images/control_panel.png")));
-      desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-      desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+      //desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+      //desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
       desc.setCustomPanel(new MainPanel());
       desc.setButtonTypes(new ButtonType[]{new ButtonType("Close", 99)});
       desc.addActionListener(new ActionListener() {

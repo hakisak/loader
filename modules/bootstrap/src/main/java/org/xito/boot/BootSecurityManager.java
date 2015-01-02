@@ -24,8 +24,6 @@ import javax.swing.*;
 import java.security.*;
 
 import org.xito.boot.util.*;
-import org.xito.boot.ui.*;
-import org.xito.dialog.*;
 
 
 /**
@@ -60,7 +58,7 @@ public class BootSecurityManager extends SecurityManager {
    
    public static final String XITO_SECURITY_LOG_CAT = "xito.security";
    
-   protected static Logger securityLogger = Logger.getLogger(XITO_SECURITY_LOG_CAT);
+   protected static final Logger securityLogger = Logger.getLogger(XITO_SECURITY_LOG_CAT);
  
    /**
     * Creates a SecurityManager.
@@ -290,20 +288,7 @@ public class BootSecurityManager extends SecurityManager {
       String msg = Resources.bundle.getString("boot.security.manager.changed.msg");
       msg = java.text.MessageFormat.format(msg, Boot.getAppDisplayName());
 
-      final DialogDescriptor desc = new DialogDescriptor();
-      desc.setWindowTitle(title);
-      desc.setTitle(title);
-      desc.setSubtitle(subtitle);
-      desc.setMessage(msg);
-      desc.setMessageType(DialogManager.WARNING_MSG);
-      desc.setType(DialogManager.OK);
-      desc.setWidth(350);
-      desc.setHeight(250);   
-      Boot.invokeAndWait(new Runnable() {
-         public void run() {
-            DialogManager.showDialog(desc);
-         }
-      });
+      Boot.showError(title,subtitle,msg, null);
    }
    
    /**

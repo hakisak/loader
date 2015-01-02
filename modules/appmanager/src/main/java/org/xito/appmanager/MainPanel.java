@@ -271,8 +271,8 @@ public class MainPanel extends GradientPanel {
       DialogDescriptor desc = new DialogDescriptor();
       desc.setTitle(Resources.bundle.getString("add.group.title"));
       desc.setSubtitle(Resources.bundle.getString("add.group.subtitle"));
-      desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-      desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+      //desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+      //desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
       desc.setType(DialogManager.OK_CANCEL);
       desc.setIcon(new ImageIcon(MainPanel.class.getResource("/org/xito/launcher/images/folder_maji_32.png")));
       desc.setWidth(350);

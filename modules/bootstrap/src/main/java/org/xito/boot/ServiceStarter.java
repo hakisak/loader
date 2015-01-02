@@ -68,14 +68,14 @@ public class ServiceStarter {
     * @param cacheServiceCode will load the service code from the cachemanager
     * @return List of StartExceptions if any occured
     */
-   public static java.util.List startServices(URL servicesURL, boolean failOnException, boolean cacheServiceCode) {
+   public static List<ServiceStartException> startServices(URL servicesURL, boolean failOnException, boolean cacheServiceCode) {
       
       ArrayList services = new ArrayList();
-      ArrayList startExps = new ArrayList();
+      List<ServiceStartException> startExps = new ArrayList<>();
       
       //Get the XML File that lists the Services to Start
       if(servicesURL == null) {
-         startExps.add(new ServiceStartException("A file listing services to start was not specified"));
+         logger.info("A file listing services to start was not specified");
          return startExps;
       }
       

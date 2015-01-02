@@ -280,8 +280,8 @@ public class MainFrame extends JFrame implements ActionListener {
       desc.setSubtitle(subtitle);
       desc.setMessage(msg);
       desc.setIcon(new ImageIcon(MainFrame.class.getResource("/org/xito/launcher/images/xito_64.png")));
-      desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
-      desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
+      //desc.setGradiantColor(org.xito.boot.ui.Defaults.DIALOG_GRAD_COLOR);
+      //desc.setGradiantOffsetRatio(org.xito.boot.ui.Defaults.DIALOG_GRAD_OFFSET);
       desc.setButtonTypes(new ButtonType[]{new ButtonType(cancelBtnTitle, ButtonType.NO), new ButtonType(quitBtnTitle, ButtonType.YES)});
       desc.setShowButtonSeparator(false);
       desc.setType(DialogManager.YES_NO);

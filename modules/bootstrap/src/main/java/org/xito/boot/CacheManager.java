@@ -31,8 +31,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.security.*;
 
-import org.xito.boot.ui.DownloadProgressFrame;
-
 /**
  * CacheManager is responsible for maintaining downloaded cached files and 
  * making sure the cache is up to date.
@@ -45,7 +43,6 @@ public class CacheManager {
    private static Logger logger = Logger.getLogger(CacheManager.class.getName());
    private static SimpleDateFormat downloadDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
       
-   private DownloadProgressFrame downloadFrame;
    private File rootDir;
    
    private HashMap recentDownloads = new HashMap();
@@ -84,10 +81,7 @@ public class CacheManager {
       System.setProperty("sun.net.client.defaultConnectTimeout", "60000");
       System.setProperty("sun.net.client.defaultReadTimeout", "60000");
       
-      //Create default download frame
-      if(!Boot.isHeadless()) {
-         downloadFrame = new DownloadProgressFrame(this);
-      }
+ //TODO deal with Download UI
 
       //Setup Delay for Debugging
       String delayValue = Boot.getBootProperty(DELAY_PROPERTY, "0");
@@ -112,11 +106,8 @@ public class CacheManager {
       catch(IOException ioExp) {
          logger.log(Level.WARNING, "Error Reading Cache Settings:"+ioExp.getMessage(), ioExp);
       }
-      
-      //Read in Download Frame Properties
-      if(downloadFrame != null) {
-         downloadFrame.setPreferredLocationAndSize();
-      }
+
+       //TODO set download UI preferred Location and Size
    }
    
    /**
@@ -452,8 +443,9 @@ public class CacheManager {
     * The default Listener for the cache manager
     */
    public CacheListener getDefaultListener() {
-            
-      return downloadFrame;
+
+       //TODO return DownloadHandler
+      return null;
    }
 
    /**

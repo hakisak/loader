@@ -23,8 +23,6 @@ import java.lang.reflect.*;
 import java.util.logging.*;
 
 import org.xito.reflect.*;
-import org.xito.dialog.*;
-import org.xito.boot.ui.*;
 import org.xito.boot.util.RuntimeHelper;
 
 /**
@@ -325,22 +323,12 @@ public class AppLauncher {
          catch(LaunchException exp) {
             launchException = exp;
             if(!showError) return;
-            
-            //Show an Alert with the Error
-            DialogDescriptor desc = new DialogDescriptor();
-            desc.setTitle(Resources.bundle.getString("app.start.error.title"));
-            desc.setSubtitle(MessageFormat.format(Resources.bundle.getString("app.start.error.subtitle"), appDesc.toString()));  
-            desc.setException(exp);
-            desc.setType(DialogManager.OK);
-            desc.setMessageType(DialogManager.ERROR_MSG);
-            desc.setGradiantColor(Defaults.DIALOG_GRAD_COLOR);
-            desc.setGradiantOffsetRatio(Defaults.DIALOG_GRAD_OFFSET);
-            desc.setResizable(true);
-           
-            String msg = MessageFormat.format(Resources.bundle.getString("app.start.error.msg"), appDesc.toString(), exp.getClass().getName(), exp.getMessage());  
-            desc.setMessage(msg);
-            
-            Boot.showError(desc);
+
+            String title = Resources.bundle.getString("app.start.error.title");
+            String subtitle = MessageFormat.format(Resources.bundle.getString("app.start.error.subtitle"), appDesc.toString());
+            String message = MessageFormat.format(Resources.bundle.getString("app.start.error.msg"), appDesc.toString(), exp.getClass().getName(), exp.getMessage());
+
+            Boot.showError(title, subtitle, message, exp);
          }
       }
    }

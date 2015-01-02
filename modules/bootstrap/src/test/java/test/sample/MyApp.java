@@ -1,14 +1,12 @@
 package test.sample;
 
 import java.io.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.net.*;
 import java.util.logging.*;
 import javax.swing.*;
 
 import org.xito.boot.*;
-import org.xito.dialog.*;
 
 /**
  *
@@ -28,7 +26,8 @@ public class MyApp extends JPanel implements ActionListener {
    
    public MyApp() {
       super();
-      
+
+       /*
       setLayout(new TableLayout(MyApp.class.getResource("layout.html")));
       //setPaintBorderLines(true);      
       JLabel lbl = new JLabel();
@@ -50,25 +49,18 @@ public class MyApp extends JPanel implements ActionListener {
       swingSetExternalCB = new JCheckBox("Use Seperate VM");
       add("swingset_btn", swingSetBtn);
       add("swingset_cb", swingSetExternalCB);
-      
+        */
       try {
-         //Setup SwingSet
-         swingSetDesc = new AppDesc("SwingSet2", "SwingSet2");
-         String codebase = "http://java.sun.com/products/jfc/jws/";
-         swingSetDesc.addClassPathEntry(new ClassPathEntry(new URL(codebase+"SwingSet2.jar")));
-         swingSetDesc.setPermissions(swingSetDesc.getAllPermissions());
-         swingSetDesc.setMainClass("SwingSet2");
-         
          //Setup Asteroids
          gameDesc = new AppDesc("Asteroids", "Asteroids");
-         codebase = "http://xito.sourceforge.net/apps/games/asteroids/";
+         String codebase = "http://xito.sourceforge.net/apps/games/asteroids/";
          gameDesc.addClassPathEntry(new ClassPathEntry(new URL(codebase+"asteroids.jar")));
          gameDesc.setPermissions(gameDesc.getAllPermissions());
          gameDesc.setMainClass("org.xito.asteroids.MainApp");
          
       } catch(Exception exp) {
          exp.printStackTrace();
-         DialogManager.showError(null, "Error", "Error creating Sample", exp);
+         Boot.showError(null, "Error", "Error creating Sample", exp);
       }
    }
    
@@ -98,13 +90,14 @@ public class MyApp extends JPanel implements ActionListener {
     * @param args the command line arguments
     */
    public static void main(String[] args) {
-      
+
+
       System.out.println("************************");
       System.out.println("Sample BootStrap Application");
       System.out.println("************************");
             
       MyApp p = new MyApp();
-      
+      /*
       DialogDescriptor desc = new DialogDescriptor();
       desc.setTitle("Xito BootStrap Sample");
       desc.setSubtitle("Sample Application to demonstrate BootStrap");
@@ -124,6 +117,7 @@ public class MyApp extends JPanel implements ActionListener {
       });
       
       dialog.show();
+       */
       
    }
    

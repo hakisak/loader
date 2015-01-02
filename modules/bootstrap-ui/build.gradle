@@ -1,0 +1,5 @@
+dependencies {
+    compile project(':modules:dialog')
+    compile project(':modules:bootstrap')
+    compile project(':modules:miglayout')
+}

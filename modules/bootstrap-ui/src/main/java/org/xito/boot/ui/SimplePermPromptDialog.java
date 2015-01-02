@@ -36,7 +36,7 @@ public class SimplePermPromptDialog extends CustomDialog {
          title = MessageFormat.format(title, Boot.getAppDisplayName());
          super.setTitle(title);
          
-         super.descriptor = new DialogDescriptor();
+         descriptor = new DialogDescriptor();
          descriptor.setWindowTitle(title);
          descriptor.setTitle(title);
          descriptor.setSubtitle("<subtitle goes here>");

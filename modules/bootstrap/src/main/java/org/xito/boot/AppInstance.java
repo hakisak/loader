@@ -15,7 +15,9 @@
 package org.xito.boot;
 
 import java.awt.*;
+import java.lang.ref.WeakReference;
 import java.util.*;
+import java.util.List;
 import java.util.logging.*;
 
 import org.xito.boot.util.*;
