@@ -12,11 +12,10 @@ jar {
 }*/
 
 //create a single Jar with all dependencies
-task fatJar(type: Jar) {
+jar {
     manifest {
         attributes 'Main-Class': 'org.xito.boot.Boot'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
 }
