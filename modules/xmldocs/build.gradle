@@ -1,0 +1,8 @@
+dependencies {
+    compile project(':modules:bootstrap')
+}
+
+task copyRuntimeLibs(type: Copy) {
+    into "build/libs"
+    from configurations.testRuntime
+}

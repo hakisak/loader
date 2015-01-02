@@ -1,0 +1,8 @@
+include "modules:dialog",
+        "modules:bootstrap",
+        "modules:reflect",
+        "modules:miglayout",
+        "modules:launcher",
+        "modules:dazzle",
+        "modules:prefs",
+        "modules:xmldocs"
