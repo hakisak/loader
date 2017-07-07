@@ -1,2 +1,1 @@
-include "modules:bootstrap",
-        "modules:bootstrap-ui"
+include "modules:bootstrap"
