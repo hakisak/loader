@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jnlp-action name="Validation Demo" title="" id="validation"
-    address="http://www.jgoodies.com/download/demos/validation/validationdemo.jnlp"
-    use-webstart="false" separate-vm="false"/>

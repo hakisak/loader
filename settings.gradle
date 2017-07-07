@@ -1,9 +1,2 @@
-include "modules:dialog",
-        "modules:bootstrap",
-        "modules:bootstrap-ui",
-        "modules:reflect",
-        "modules:miglayout",
-        "modules:launcher",
-        "modules:dazzle",
-        "modules:prefs",
-        "modules:xmldocs"
+include "modules:bootstrap",
+        "modules:bootstrap-ui"

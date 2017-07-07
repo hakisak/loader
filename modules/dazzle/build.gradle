@@ -1,4 +1,0 @@
-dependencies {
-    compile project(':modules:dialog')
-    testCompile project(path: ':modules:dialog', configuration: 'tests')
-}

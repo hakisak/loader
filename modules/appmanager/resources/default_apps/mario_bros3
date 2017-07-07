@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<applet-action name="Mario Bros3" title="Super Mario Brothers 3"
-    id="mario_bros3"
-    address="http://xito.sourceforge.net/apps/games/nes/super_mario_bros_3.html"
-    use-browser="false" separate-vm="false" custom-config="false"/>

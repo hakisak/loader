@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jnlp-action name="Looks Demo" title="" id="looks_demo"
-    address="http://www.jgoodies.com/download/demos/looks/looksdemo.jnlp"
-    use-webstart="false" separate-vm="false"/>

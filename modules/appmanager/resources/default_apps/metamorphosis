@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jnlp-action name="Metamorphosis" title="" id="metamorphosis"
-    address="http://www.jgoodies.com/download/demos/metamorphosis/metamorphosis.jnlp"
-    use-webstart="false" separate-vm="false"/>

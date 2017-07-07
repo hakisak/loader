@@ -8,21 +8,24 @@ import java.security.ProtectionDomain;
 import java.util.logging.Logger;
 
 /**
- * Created by deane on 1/1/15.
+ * Copyright 2017
+ * Licensed by Apache License 2.0
+ * https://www.apache.org/licenses/LICENSE-2.0.txt
  */
 public interface PermissionPromptHandler {
 
-    public boolean promptForPermission(PolicyStore policyStore,
-                                       Logger securityLogger,
-                                       String subtitle,
-                                       String msg,
-                                       Permission perm,
-                                       ExecutableDesc execDesc);
 
-    public int promptForPermission(PolicyStore policyStore,
-                                   Logger securityLogger,
-                                   ProtectionDomain domain,
-                                   ExecutableDesc execDesc,
-                                   Permission permission);
+    boolean promptForPermission(PolicyStore policyStore,
+                                Logger securityLogger,
+                                String subtitle,
+                                String msg,
+                                Permission perm,
+                                ExecutableDesc execDesc);
 
+
+    int promptForPermission(PolicyStore policyStore,
+                            Logger securityLogger,
+                            ProtectionDomain domain,
+                            ExecutableDesc execDesc,
+                            Permission permission);
 }

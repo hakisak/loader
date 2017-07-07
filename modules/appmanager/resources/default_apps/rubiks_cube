@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<applet-action name="Rubiks Cube" title="Rubiks Cube"
-    id="rubiks_cube"
-    address="http://www.javaonthebrain.com/java/rubik/"
-    use-browser="false" separate-vm="false" custom-config="false"/>

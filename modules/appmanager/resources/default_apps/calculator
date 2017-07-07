@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<applet-action name="Calculator" title="" id="calculator"
-    address="http://www.geocities.com/entity05/java/myjava.html"
-    use-browser="false" separate-vm="false" custom-config="false">
-    <applet name="Calculator" alt="" code=""
-        codebase="http://www.geocities.com/entity05/java/" archive=""
-        width="0" height="0"/>
-</applet-action>

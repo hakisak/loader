@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jnlp-action name="SwingSet" title="" id="swingset"
-    address="http://java.sun.com/products/javawebstart/apps/swingset2.jnlp"
-    use-webstart="false" separate-vm="false"/>

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jnlp-action name="JDiskReport" title="" id="jdiskreport"
-    address="http://www.jgoodies.com/download/jdiskreport/jdiskreport.jnlp"
-    use-webstart="false" separate-vm="true"/>

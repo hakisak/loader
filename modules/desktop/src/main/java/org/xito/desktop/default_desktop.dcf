@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dcf:document xmlns:dcf=''>
-  <dcf:object class="org.ocd.desktop.OCDesktop" extension="desktop">
-    <desktop>
-      <dcf:component class="org.ocd.desktop.OCMasterTile" extension="desktop" x="968" y="-1" width="57" height="48"/>
-    </desktop>
-  </dcf:object>
-</dcf:document>

@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<blx:document xmlns:blx="blx">
-   <blx:alias name="ext1" ext-href="Ext1.blxe"/>
-   <blx:object ext-alias="ext1" class="test.ext1.TestCollection"/> 
-</blx:document>

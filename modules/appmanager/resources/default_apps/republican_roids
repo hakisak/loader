@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jnlp-action name="re_roids" title="Republican Roids"
-    id="republican_roids"
-    address="http://jaxito.com/republican_roids.jnlp"
-    use-webstart="false" separate-vm="false"/>

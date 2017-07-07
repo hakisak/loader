@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<applet-action
-    address="http://java.sun.com/applets/jdk/1.4/demo/applets/MoleculeViewer/example1.html"
-    custom-config="false" id="hyaluronic-acid" name="HyaluronicAcid"
-    separate-vm="false" title="" use-browser="false">
-</applet-action>

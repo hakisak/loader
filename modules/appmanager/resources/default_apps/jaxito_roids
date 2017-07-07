@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jnlp-action name="jaxito_roids" title="Jaxito Roids"
-    id="jaxito_roids"
-    address="http://jaxito.com/jaxito_roids.jnlp"
-    use-webstart="false" separate-vm="false"/>

@@ -1,11 +1,18 @@
 package org.xito.boot.ui;
 
 /**
- * Created by deane on 1/1/15.
+ * Copyright 2017
+ * Licensed by Apache License 2.0
+ * https://www.apache.org/licenses/LICENSE-2.0.txt
  */
 public interface ErrorPromptHandler {
 
-    public enum PromptResult{OK, CANCEL, YES, NO}
+    void showError(String title, String subtitle, String message, Exception exp);
 
-    public void showError(String title, String subtitle, String message, Exception exp);
+    enum PromptResult {
+        NO,
+        YES,
+        CANCEL,
+        OK
+    }
 }

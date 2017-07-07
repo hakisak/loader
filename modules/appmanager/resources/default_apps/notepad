@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<sys-action name="Notepad" title="Notepad" id="notepad"
-    exec="notepad.exe" start-in="" args=""/>

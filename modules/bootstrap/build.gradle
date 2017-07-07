@@ -1,6 +1,4 @@
-dependencies {
-    compile project(':modules:reflect')
-}
+
 
 //create a single Jar with all dependencies
 jar {

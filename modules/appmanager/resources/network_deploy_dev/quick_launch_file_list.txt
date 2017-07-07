@@ -1,7 +1,0 @@
-#List each file that should be copied to the local machine
-#These filenames should be relative to the JNLP codebase
-#specified in quick_launch.jnlp
-
-boot.jar
-boot.properties
-xito_16.png

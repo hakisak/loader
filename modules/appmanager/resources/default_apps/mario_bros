@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<applet-action name="Mario Bros" title="Super Mario Brothers"
-    id="mario_bros"
-    address="http://xito.sourceforge.net/apps/games/nes/super_mario_bros.html"
-    use-browser="false" separate-vm="false" custom-config="false"/>

@@ -14,6 +14,8 @@
 
 package org.xito.boot;
 
+import org.xito.boot.ui.ErrorPromptHandler;
+
 import java.lang.reflect.InvocationTargetException;
 import java.security.*;
 import java.text.MessageFormat;
@@ -27,8 +29,8 @@ import javax.swing.*;
 //Used to load the System Look and Feel
 
 //import org.xito.dialog.*;
-import org.xito.boot.ui.ErrorPromptHandler;
-import org.xito.reflect.*;
+//import org.xito.boot.ui.ErrorPromptHandler;
+//import org.xito.reflect.*;
 
 /**
  * <p>

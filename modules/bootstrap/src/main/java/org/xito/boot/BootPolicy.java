@@ -14,13 +14,13 @@
 
 package org.xito.boot;
 
+import org.xito.boot.ui.PermissionPromptHandler;
+
 import java.util.*;
 import java.util.logging.*;
 import java.net.*;
 import java.security.*;
 import java.security.cert.*;
-
-import org.xito.boot.ui.*;
 
 /**
  * Policy for Boot environment.  Will determine the permissions that should be granted
