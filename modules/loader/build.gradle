@@ -1,0 +1,27 @@
+
+
+//create a single Jar with all dependencies
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.xito.boot.Boot'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+
+task copyLoaderTests(type: Copy) {
+    from 'loader_test'
+    into '' + buildDir + '/loader_test'
+}
+
+test {
+    useJUnit()
+    forkEvery = 1
+    systemProperties.put('buildDir', buildDir)
+    testLogging.showStandardStreams = true
+
+    doFirst {
+        copyLoaderTests.execute()
+    }
+}

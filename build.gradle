@@ -11,16 +11,21 @@ subprojects {
     }
 
     dependencies {
-        testCompile "junit:junit:3.8.1"
+        testCompile "junit:junit:4.12"
+    }
+
+    test {
+
+    }
+
+/*
+    configurations {
+        tests
     }
 
     task testJar(type: Jar, dependsOn: testClasses) {
         baseName = "${project.archivesBaseName}-test"
         from sourceSets.test.output
-    }
-
-    configurations {
-        tests
     }
 
     artifacts {
@@ -31,5 +36,6 @@ subprojects {
         from(file('resources'))
         into(buildDir)
     }
+    */
 
 }
