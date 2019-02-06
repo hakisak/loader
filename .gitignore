@@ -5,3 +5,6 @@
 .idea/
 target/
 build/
+.DS_Store
+.gradle/
+modules/loader/out/
